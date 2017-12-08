@@ -58,7 +58,7 @@ namespace GradeCalculator
                 sb.AppendLine("An unexpected error has occured in Grade Calculator.");
                 sb.AppendLine();
                 sb.Append(ex.ToString());
-                System.Windows.Forms.MessageBox.Show(sb.ToString(), "Grade Calculator", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                System.Windows.MessageBox.Show(sb.ToString(), "Grade Calculator", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             }
         }
     }
