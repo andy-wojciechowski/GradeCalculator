@@ -39,8 +39,24 @@ namespace GradeCalculator
                     foreach(var kvp in assignments)
                     {
                         double worth = c.categories.Single(x => x.Name.Equals(kvp.Key)).CategoryWeight;
-                        //TODO: Continue with the report
+                        excelWorksheet.Cells[rowIndex, cellIndex] = string.Format("Grade Category: {0}", kvp.Key);
+                        rowIndex += 1;
+                        excelWorksheet.Cells[rowIndex, cellIndex] = string.Format("Category Weight: {0}", string.Format("{0:P2}", worth));
+                        rowIndex += 1;
+                        excelWorksheet.Cells[rowIndex, cellIndex] = "Assignment Breakdown";
+                        rowIndex += 1;
+                        foreach(var assignment in kvp.Value)
+                        {
+                            excelWorksheet.Cells[rowIndex, cellIndex] = assignment.Name;
+                            excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("{0}/{1}", assignment.TotalPointsEarned, assignment.TotalPossiblePoints);
+                            rowIndex += 1;
+                        }
+                        excelWorksheet.Cells[rowIndex, cellIndex] = "Total Category Grade";
+                        excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("{0:P2}", c.CalculateTotalCategoryGrade(kvp.Key));
+                        rowIndex += 1;
                     }
+                    excelWorksheet.Cells[rowIndex, cellIndex] = "Final Class Grade";
+                    excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("{0:P2}", c.CalculateFinalGrade());
                 }
 
                 string currentDate = DateTime.Now.ToString("dd/MM/yyyy");

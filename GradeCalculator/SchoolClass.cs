@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GradeCalculator
 {
@@ -26,6 +24,11 @@ namespace GradeCalculator
                 result.Add(category.Name, relevantAssignments);
             }
             return result;
+        }
+
+        public double CalculateTotalCategoryGrade(string Name)
+        {
+            throw new NotImplementedException();
         }
     }
 }
