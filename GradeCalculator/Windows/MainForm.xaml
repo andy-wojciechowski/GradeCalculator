@@ -1,9 +1,9 @@
-﻿<Window x:Class="GradeCalculator.MainForm"
+﻿<Window x:Class="GradeCalculator.Windows.MainForm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GradeCalculator"
+        xmlns:local="clr-namespace:GradeCalculator.Windows"
         mc:Ignorable="d"
         Title="Grade Calculator" Height="534.107" Width="500" Closing="Window_Closing">
     <Grid Margin="0,30,-0.4,-2.6">

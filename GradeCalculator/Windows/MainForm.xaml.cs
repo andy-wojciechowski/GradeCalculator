@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using GradeCalculator.Model;
+using GradeCalculator.Presenters;
 
-namespace GradeCalculator
+namespace GradeCalculator.Windows
 {
     /// <summary>
     /// Interaction logic for MainForm.xaml

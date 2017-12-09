@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using GradeCalculator.Model;
+using GradeCalculator.Windows;
 
-namespace GradeCalculator
+namespace GradeCalculator.Presenters
 {
     public class MainFormPresenter : BasePresenter<MainForm>
     {

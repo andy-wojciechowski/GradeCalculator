@@ -54,31 +54,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BasePresenter.cs" />
-    <Compile Include="EditAssignmentPresenter.cs" />
-    <Compile Include="EditAssignmentsForm.xaml.cs">
+    <Compile Include="Presenters\BasePresenter.cs" />
+    <Compile Include="Presenters\EditAssignmentPresenter.cs" />
+    <Compile Include="Windows\EditAssignmentsForm.xaml.cs">
       <DependentUpon>EditAssignmentsForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditCategoryForm.xaml.cs">
+    <Compile Include="Windows\EditCategoryForm.xaml.cs">
       <DependentUpon>EditCategoryForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditCategoryPresenter.cs" />
-    <Compile Include="EditClassForm.xaml.cs">
+    <Compile Include="Presenters\EditCategoryPresenter.cs" />
+    <Compile Include="Windows\EditClassForm.xaml.cs">
       <DependentUpon>EditClassForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditClassPresenter.cs" />
-    <Compile Include="MainForm.xaml.cs">
+    <Compile Include="Presenters\EditClassPresenter.cs" />
+    <Compile Include="Windows\MainForm.xaml.cs">
       <DependentUpon>MainForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainFormPresenter.cs" />
-    <Compile Include="SchoolClass.cs" />
+    <Compile Include="Presenters\MainFormPresenter.cs" />
+    <Compile Include="Model\SchoolClass.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Assignment.cs" />
-    <Compile Include="GradeCategory.cs" />
-    <Compile Include="GradeReport.cs" />
+    <Compile Include="Model\Assignment.cs" />
+    <Compile Include="Model\GradeCategory.cs" />
+    <Compile Include="Model\GradeReport.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -136,19 +136,19 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="EditAssignmentsForm.xaml">
+    <Page Include="Windows\EditAssignmentsForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EditCategoryForm.xaml">
+    <Page Include="Windows\EditCategoryForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EditClassForm.xaml">
+    <Page Include="Windows\EditClassForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainForm.xaml">
+    <Page Include="Windows\MainForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

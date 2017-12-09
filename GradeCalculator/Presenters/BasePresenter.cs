@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace GradeCalculator
+namespace GradeCalculator.Presenters
 {
     public class BasePresenter<TWindow> where TWindow : Window
     {

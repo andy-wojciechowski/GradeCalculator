@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 
-namespace GradeCalculator
+namespace GradeCalculator.Model
 {
     public class GradeReport
     {

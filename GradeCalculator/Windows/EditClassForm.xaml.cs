@@ -11,8 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GradeCalculator.Model;
 
-namespace GradeCalculator
+namespace GradeCalculator.Windows
 {
     /// <summary>
     /// Interaction logic for EditClassFormxaml.xaml

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GradeCalculator
+namespace GradeCalculator.Model
 {
     public class SchoolClass
     {
