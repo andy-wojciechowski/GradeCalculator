@@ -38,7 +38,7 @@ namespace GradeCalculator
                     var assignments = c.GetAssignmentsByCategory();
                     foreach(var kvp in assignments)
                     {
-                        double worth = c.categories.Single(x => x.Name.Equals(kvp.Key)).CategoryWeight;
+                        double worth = c.Categories.Single(x => x.Name.Equals(kvp.Key)).CategoryWeight;
                         excelWorksheet.Cells[rowIndex, cellIndex] = string.Format("Grade Category: {0}", kvp.Key);
                         rowIndex += 1;
                         excelWorksheet.Cells[rowIndex, cellIndex] = string.Format("Category Weight: {0}", string.Format("{0:P2}", worth));

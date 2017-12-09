@@ -9,7 +9,7 @@ namespace GradeCalculator
     public class Assignment
     {
         public string Name { get; set; }
-        public GradeCategory category { get; set; }
+        public GradeCategory Category { get; set; }
         public double TotalPointsEarned { get; set; }
         public double TotalPossiblePoints { get; set; }
     }
