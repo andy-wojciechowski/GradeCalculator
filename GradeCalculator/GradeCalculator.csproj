@@ -54,9 +54,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BasePresenter.cs" />
+    <Compile Include="EditAssignmentPresenter.cs" />
+    <Compile Include="EditAssignmentsForm.xaml.cs">
+      <DependentUpon>EditAssignmentsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditCategoryForm.xaml.cs">
+      <DependentUpon>EditCategoryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditCategoryPresenter.cs" />
+    <Compile Include="EditClassForm.xaml.cs">
+      <DependentUpon>EditClassForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditClassPresenter.cs" />
     <Compile Include="MainForm.xaml.cs">
       <DependentUpon>MainForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainFormPresenter.cs" />
     <Compile Include="SchoolClass.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -122,6 +136,18 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="EditAssignmentsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditCategoryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditClassForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -14,7 +14,7 @@ namespace GradeCalculator
     {
         private const string FILE_NAME = "C:\\temp\\GradeCalculatorData.xml";
 
-        public List<SchoolClass> ReadFromXml()
+        public static List<SchoolClass> ReadFromXml()
         {
             List<SchoolClass> classes = new List<SchoolClass>();
             if(File.Exists(FILE_NAME))
