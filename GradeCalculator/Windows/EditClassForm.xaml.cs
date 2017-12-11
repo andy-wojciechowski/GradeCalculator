@@ -35,7 +35,7 @@ namespace GradeCalculator.Windows
             Binding binding = new Binding();
             binding.Source = data;
             binding.Path = new PropertyPath("Name");
-            binding.Mode = BindingMode.OneWay;
+            binding.Mode = BindingMode.TwoWay;
             binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
             BindingOperations.SetBinding(nameTextBox, TextBox.TextProperty, binding);
 
