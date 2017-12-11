@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Xml.Linq;
 using GradeCalculator.Model;
+using System.Collections.ObjectModel;
 
 namespace GradeCalculator
 {
@@ -26,8 +27,8 @@ namespace GradeCalculator
                 {
                     SchoolClass c = new SchoolClass();
                     c.Name = element.Attribute("Name").Value;
-                    c.Categories = new List<GradeCategory>();
-                    c.Assignments = new List<Assignment>();
+                    c.Categories = new ObservableCollection<GradeCategory>();
+                    c.Assignments = new ObservableCollection<Assignment>();
 
                     List<XElement> allCategoryElements = element.Descendants().Where(x => x.Name.LocalName.Equals("Category")).ToList();
                     foreach(var categoryElement in allCategoryElements)
