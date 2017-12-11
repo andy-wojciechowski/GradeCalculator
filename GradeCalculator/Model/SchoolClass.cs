@@ -1,14 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace GradeCalculator.Model
 {
-    public class SchoolClass
+    public class SchoolClass : INotifyPropertyChanged
     {
-        public string Name { get; set; }
-        public List<GradeCategory> Categories { get; set; }
-        public List<Assignment> Assignments { get; set; }
+        private string name;
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                this.name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+
+        public ObservableCollection<GradeCategory> Categories { get; set; }
+        public ObservableCollection<Assignment> Assignments { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public double CalculateFinalGrade()
         {
@@ -29,6 +48,11 @@ namespace GradeCalculator.Model
         public double CalculateTotalCategoryGrade(string Name)
         {
             throw new NotImplementedException();
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

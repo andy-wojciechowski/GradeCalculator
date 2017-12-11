@@ -1,16 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace GradeCalculator.Model
 {
-    public class Assignment
+    public class Assignment : INotifyPropertyChanged
     {
-        public string Name { get; set; }
-        public GradeCategory Category { get; set; }
-        public double TotalPointsEarned { get; set; }
-        public double TotalPossiblePoints { get; set; }
+        private string name;
+        private GradeCategory category;
+        private double totalPointsEarned;
+        private double totalPossiblePoints;
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                this.name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+
+        public GradeCategory Category
+        {
+            get
+            {
+                return category;
+            }
+            set
+            {
+                this.category = value;
+                OnPropertyChanged("Category");
+            }
+        }
+
+        public double TotalPointsEarned
+        {
+            get
+            {
+                return totalPointsEarned;
+            }
+            set
+            {
+                this.totalPointsEarned = value;
+                OnPropertyChanged("TotalPointsEarned");
+            }
+        }
+
+        public double TotalPossiblePoints
+        {
+            get
+            {
+                return totalPossiblePoints;
+            }
+            set
+            {
+                this.totalPossiblePoints = value;
+                OnPropertyChanged("TotalPossiblePoints");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

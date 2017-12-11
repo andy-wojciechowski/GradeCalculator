@@ -1,14 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace GradeCalculator.Model
 {
-    public class GradeCategory
+    public class GradeCategory : INotifyPropertyChanged
     {
-        public string Name { get; set;  }
-        public double CategoryWeight { get; set; }
+        private string name;
+        private double categoryWeight;
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                this.name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+
+        public double CategoryWeight
+        {
+            get
+            {
+                return categoryWeight;
+            }
+            set
+            {
+                this.categoryWeight = value;
+                OnPropertyChanged("CategoryWeight");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

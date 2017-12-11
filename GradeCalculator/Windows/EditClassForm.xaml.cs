@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using GradeCalculator.Model;
+using GradeCalculator.Presenters;
 
 namespace GradeCalculator.Windows
 {
@@ -20,9 +21,49 @@ namespace GradeCalculator.Windows
     /// </summary>
     public partial class EditClassForm : Window
     {
+        private EditClassPresenter presenter { get; set; }
+
         public EditClassForm(SchoolClass data)
         {
             InitializeComponent();
+            this.presenter = new EditClassPresenter(this, data);
+        }
+
+        public void InitalizeDataBinding(SchoolClass data)
+        {
+            //Name Property
+            Binding binding = new Binding();
+            binding.Source = data;
+            binding.Path = new PropertyPath("Name");
+            binding.Mode = BindingMode.OneWay;
+            binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            BindingOperations.SetBinding(nameTextBox, TextBox.TextProperty, binding);
+
+            //Grade Categories
+            this.categoryGrid.ItemsSource = data.Categories;
+
+            //Assignments
+            this.assignmentsDataGrid.ItemsSource = data.Assignments;
+       }
+
+        private void editAssignmentButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void addAssignmentButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void editCategoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void addCategoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
