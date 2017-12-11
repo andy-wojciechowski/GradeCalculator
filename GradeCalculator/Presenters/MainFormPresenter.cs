@@ -32,7 +32,7 @@ namespace GradeCalculator.Presenters
         public void NewClass()
         {
             SchoolClass newClass = new SchoolClass() { Name = string.Empty, Assignments = new List<Assignment>(), Categories = new List<GradeCategory>() };
-            this.View.UpateObservableCollection(newClass);
+            this.View.UpdateObservableCollection(newClass);
             EditClassForm form = new EditClassForm(newClass);
             form.Show();
         }

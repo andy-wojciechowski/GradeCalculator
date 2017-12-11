@@ -40,7 +40,7 @@ namespace GradeCalculator.Windows
             }
             else
             {
-                if(this.classGrid.SelectedIndex == -1) { this.classGrid.SelectedIndex = 1; }
+                if(this.classGrid.SelectedIndex == -1) { this.classGrid.SelectedIndex = 0; }
                 var schoolClass = (SchoolClass)this.classGrid.SelectedItem;
                 this.presenter.UpdateClass(schoolClass);
             }
@@ -56,7 +56,7 @@ namespace GradeCalculator.Windows
             App.WriteToXml(new List<SchoolClass>(this.classes));
         }
 
-        public void UpateObservableCollection(SchoolClass classToAdd)
+        public void UpdateObservableCollection(SchoolClass classToAdd)
         {
             this.classes.Add(classToAdd);
         }
