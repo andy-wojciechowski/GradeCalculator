@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using GradeCalculator.Model;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Xml.Linq;
-using GradeCalculator.Model;
-using System.Collections.ObjectModel;
 
 namespace GradeCalculator
 {

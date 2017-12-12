@@ -1,10 +1,5 @@
-﻿using GradeCalculator.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GradeCalculator.Model;
+﻿using GradeCalculator.Model;
+using GradeCalculator.Windows;
 
 namespace GradeCalculator.Presenters
 {

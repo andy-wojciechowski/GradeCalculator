@@ -14,7 +14,7 @@ namespace GradeCalculator.Presenters
 
         public void UpdateAssignment(Assignment assignment)
         {
-            EditAssignmentsForm form = new EditAssignmentsForm(assignment);
+            EditAssignmentsForm form = new EditAssignmentsForm(assignment, data.Categories);
             form.Show();
         }
 
@@ -22,7 +22,7 @@ namespace GradeCalculator.Presenters
         {
             Assignment newAssignment = new Assignment() { Name = string.Empty, Category = null, TotalPointsEarned = 0D, TotalPossiblePoints = 0D };
             this.data.Assignments.Add(newAssignment);
-            EditAssignmentsForm form = new EditAssignmentsForm(newAssignment);
+            EditAssignmentsForm form = new EditAssignmentsForm(newAssignment, data.Categories);
             form.Show();
         }
 
