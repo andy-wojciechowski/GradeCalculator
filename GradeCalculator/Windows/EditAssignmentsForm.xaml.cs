@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GradeCalculator.Model;
 
 namespace GradeCalculator.Windows
 {
@@ -19,7 +20,7 @@ namespace GradeCalculator.Windows
     /// </summary>
     public partial class EditAssignmentsForm : Window
     {
-        public EditAssignmentsForm()
+        public EditAssignmentsForm(Assignment assignment)
         {
             InitializeComponent();
         }

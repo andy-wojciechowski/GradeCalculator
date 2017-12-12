@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using GradeCalculator.Model;
+using GradeCalculator.Windows;
 using System.Collections.ObjectModel;
 using System.Linq;
-using GradeCalculator.Model;
-using GradeCalculator.Windows;
 
 namespace GradeCalculator.Presenters
 {
@@ -31,7 +30,7 @@ namespace GradeCalculator.Presenters
 
         public void NewClass()
         {
-            SchoolClass newClass = new SchoolClass() { Name = string.Empty, Assignments = new List<Assignment>(), Categories = new List<GradeCategory>() };
+            SchoolClass newClass = new SchoolClass() { Name = string.Empty, Assignments = new ObservableCollection<Assignment>(), Categories = new ObservableCollection<GradeCategory>() };
             this.View.UpdateObservableCollection(newClass);
             EditClassForm form = new EditClassForm(newClass);
             form.Show();

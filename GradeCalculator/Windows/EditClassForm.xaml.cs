@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GradeCalculator.Model;
+using GradeCalculator.Presenters;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using GradeCalculator.Model;
-using GradeCalculator.Presenters;
 
 namespace GradeCalculator.Windows
 {
@@ -48,12 +39,31 @@ namespace GradeCalculator.Windows
 
         private void editAssignmentButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (this.assignmentsDataGrid.Items.Count == 0)
+            {
+                MessageBox.Show("There are no assignments to edit. ", "Grade Calculator", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                if (this.assignmentsDataGrid.SelectedIndex == -1) { this.assignmentsDataGrid.SelectedIndex = 0;  }
+                Assignment selectedAssignment = (Assignment)this.assignmentsDataGrid.SelectedItem;
+                this.presenter.UpdateAssignment(selectedAssignment);
+            }
         }
+
 
         private void addAssignmentButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if(this.categoryGrid.Items.Count == 0)
+            {
+                MessageBox.Show("There are no categories to edit. ", "Grade Calculator", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                if(this.categoryGrid.SelectedIndex == -1) { this.categoryGrid.SelectedIndex = 0; }
+                GradeCategory selectedCategory = (GradeCategory)this.categoryGrid.SelectedItem;
+                
+            }
         }
 
         private void editCategoryButton_Click(object sender, RoutedEventArgs e)
