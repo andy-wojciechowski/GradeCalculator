@@ -5,7 +5,7 @@ namespace GradeCalculator.Presenters
     public class BasePresenter<TWindow> where TWindow : Window
     {
         private TWindow view;
-        public TWindow View
+        protected TWindow View
         {
             get
             {
