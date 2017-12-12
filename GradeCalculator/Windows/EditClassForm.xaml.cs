@@ -54,26 +54,26 @@ namespace GradeCalculator.Windows
 
         private void addAssignmentButton_Click(object sender, RoutedEventArgs e)
         {
-            if(this.categoryGrid.Items.Count == 0)
+            this.presenter.AddAssignment();
+        }
+
+        private void editCategoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.categoryGrid.Items.Count == 0)
             {
                 MessageBox.Show("There are no categories to edit. ", "Grade Calculator", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
-                if(this.categoryGrid.SelectedIndex == -1) { this.categoryGrid.SelectedIndex = 0; }
+                if (this.categoryGrid.SelectedIndex == -1) { this.categoryGrid.SelectedIndex = 0; }
                 GradeCategory selectedCategory = (GradeCategory)this.categoryGrid.SelectedItem;
-                
+                this.presenter.UpdateCategory(selectedCategory);
             }
-        }
-
-        private void editCategoryButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private void addCategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            this.presenter.AddCategory();
         }
     }
 }
