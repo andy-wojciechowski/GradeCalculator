@@ -29,6 +29,7 @@ namespace GradeCalculator.Windows
         {
             //First bind the readonly combobox
             this.categoryCombobox.ItemsSource = categories;
+            this.categoryCombobox.DisplayMemberPath = "Name";
 
             //Name Property
             Binding binding1 = new Binding();
