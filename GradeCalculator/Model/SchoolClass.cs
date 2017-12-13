@@ -45,9 +45,13 @@ namespace GradeCalculator.Model
             return result;
         }
 
-        public double CalculateTotalCategoryGrade(string Name)
+        public Tuple<double, double, double> CalculateTotalCategoryGrade(string Name)
         {
-            throw new NotImplementedException();
+            var relevantAssignments = this.Assignments.Where(x => x.Category.Name.Equals(name)).ToList();
+            double totalEarnedPoints = relevantAssignments.Sum(x => x.TotalPointsEarned);
+            double totalPossiblePoints = relevantAssignments.Sum(x => x.TotalPossiblePoints);
+
+            return new Tuple<double, double, double>(totalEarnedPoints, totalPossiblePoints, totalEarnedPoints / totalPossiblePoints);
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
