@@ -21,7 +21,6 @@ namespace GradeCalculator.Windows
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Figure out if the object in edit class form will need to be updated
             this.Close();
         }
 
