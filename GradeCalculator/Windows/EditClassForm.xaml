@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GradeCalculator.Windows"
         mc:Ignorable="d"
-        Title="Edit Class" Height="617.321" Width="423.898">
+        Title="Edit Class" Height="617.321" Width="423.898" Loaded="editClassForm_Loaded">
     <Grid>
         <Label Content="Name: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="23" Margin="63,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

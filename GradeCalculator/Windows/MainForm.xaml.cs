@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using GradeCalculator.Model;
 using GradeCalculator.Presenters;
+using System.Windows.Controls;
 
 namespace GradeCalculator.Windows
 {
@@ -59,6 +60,20 @@ namespace GradeCalculator.Windows
         public void UpdateObservableCollection(SchoolClass classToAdd)
         {
             this.classes.Add(classToAdd);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Hide unnecessary columns
+            for (int i = 0; i < this.classGrid.Columns.Count; i++)
+            {
+                //This is for simplicity so the VisualTreeHelper does not have to get involved 
+                //hide all columns with the index greater than 0
+                if (i != 0)
+                {
+                    this.classGrid.Columns[i].Visibility = Visibility.Hidden;
+                }
+            }
         }
     }
 }

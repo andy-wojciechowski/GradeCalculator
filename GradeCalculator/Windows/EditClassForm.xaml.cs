@@ -34,7 +34,7 @@ namespace GradeCalculator.Windows
 
             //Assignments
             this.assignmentsDataGrid.ItemsSource = data.Assignments;
-       }
+        }
 
         private void editAssignmentButton_Click(object sender, RoutedEventArgs e)
         {
@@ -73,6 +73,30 @@ namespace GradeCalculator.Windows
         private void addCategoryButton_Click(object sender, RoutedEventArgs e)
         {
             this.presenter.AddCategory();
+        }
+
+        private void editClassForm_Loaded(object sender, RoutedEventArgs e)
+        {
+            //HIde all unecessary columns from both datagrids
+            for (int i = 0; i < this.categoryGrid.Columns.Count; i++)
+            {
+                //This is for simplicity so the VisualTreeHelper does not have to get involved 
+                //hide all columns with the index greater than 0
+                if (i != 0)
+                {
+                    this.categoryGrid.Columns[i].Visibility = Visibility.Hidden;
+                }
+            }
+
+            for (int i = 0; i < this.assignmentsDataGrid.Columns.Count; i++)
+            {
+                //This is for simplicity so the VisualTreeHelper does not have to get involved 
+                //hide all columns with the index greater than 0
+                if (i != 0)
+                {
+                    this.assignmentsDataGrid.Columns[i].Visibility = Visibility.Hidden;
+                }
+            }
         }
     }
 }
