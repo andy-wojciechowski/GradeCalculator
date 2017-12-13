@@ -10,6 +10,7 @@ namespace GradeCalculator.Presenters
         public EditAssignmentPresenter(EditAssignmentsForm form, Assignment assignment, ObservableCollection<GradeCategory> categories) : base(form)
         {
             this.data = assignment;
+            this.SetDataBinding(categories);
         }
 
         private void SetDataBinding(ObservableCollection<GradeCategory> categories)

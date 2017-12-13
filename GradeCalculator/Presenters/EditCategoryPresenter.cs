@@ -9,11 +9,12 @@ namespace GradeCalculator.Presenters
         public EditCategoryPresenter(EditCategoryForm form, GradeCategory category) : base(form)
         {
             this.category = category;
+            this.InitializeDataBinding();
         }
 
-        public void InitializeDataBinding()
+        private void InitializeDataBinding()
         {
-            this.View.InitializeDataBinding(category);
+            this.View.InitializeDataBinding(this.category);
         }
     }
 }

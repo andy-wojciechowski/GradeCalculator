@@ -16,7 +16,6 @@ namespace GradeCalculator.Windows
         {
             InitializeComponent();
             this.presenter = new EditCategoryPresenter(this, category);
-            this.presenter.InitializeDataBinding();
         }
 
         private void okButton_Click(object sender, RoutedEventArgs e)
