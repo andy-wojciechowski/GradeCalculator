@@ -42,8 +42,8 @@ namespace GradeCalculator.Windows
             binding2.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
 
             //Set the 2 bindings
-            BindingOperations.SetBinding(nameTextBox, TextBox.NameProperty, binding1);
-            BindingOperations.SetBinding(worthTextBox, TextBox.NameProperty, binding2);
+            BindingOperations.SetBinding(nameTextBox, TextBox.TextProperty, binding1);
+            BindingOperations.SetBinding(worthTextBox, TextBox.TextProperty, binding2);
         }
     }
 }
