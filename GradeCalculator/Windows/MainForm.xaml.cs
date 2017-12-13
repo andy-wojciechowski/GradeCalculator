@@ -74,6 +74,8 @@ namespace GradeCalculator.Windows
                     this.classGrid.Columns[i].Visibility = Visibility.Hidden;
                 }
             }
+
+            this.classGrid.Columns[0].Width = new DataGridLength(0.01, DataGridLengthUnitType.Star);
         }
     }
 }
