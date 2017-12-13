@@ -51,6 +51,7 @@ namespace GradeCalculator.Windows
             binding3.Path = new PropertyPath("TotalPointsEarned");
             binding3.Mode = BindingMode.TwoWay;
             binding3.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            binding3.StringFormat = "##.##";
 
             //TotalPossiblePoints property
             Binding binding4 = new Binding();
@@ -58,6 +59,7 @@ namespace GradeCalculator.Windows
             binding4.Path = new PropertyPath("TotalPossiblePoints");
             binding4.Mode = BindingMode.TwoWay;
             binding4.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            binding4.StringFormat = "##.##";
 
             //Set all the data bindings
             BindingOperations.SetBinding(nameTextBox, TextBox.TextProperty, binding1);
