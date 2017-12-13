@@ -53,7 +53,7 @@ namespace GradeCalculator.Model
                         }
                         excelWorksheet.Cells[rowIndex, cellIndex] = "Total Category Grade";
                         var totalCategoryGrade = c.CalculateTotalCategoryGrade(kvp.Key);
-                        excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("{0}/{1} {2:P2}", totalCategoryGrade.Item1, totalCategoryGrade.Item2, totalCategoryGrade.Item3);
+                        excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("{0}/{1}", totalCategoryGrade.Item1, totalCategoryGrade.Item2);
                         rowIndex += 1;
                     }
                     excelWorksheet.Cells[rowIndex, cellIndex] = "Final Class Grade";
