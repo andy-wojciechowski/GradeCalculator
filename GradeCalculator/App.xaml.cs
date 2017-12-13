@@ -22,7 +22,7 @@ namespace GradeCalculator
             if(File.Exists(FILE_NAME))
             {
                 XDocument xDoc = XDocument.Load(FILE_NAME);
-                List<XElement> allClasses = xDoc.Elements().Where(x => x.Name.LocalName.Equals("Class")).ToList();
+                List<XElement> allClasses = xDoc.Descendants().Where(x => x.Name.LocalName.Equals("Class")).ToList();
                 foreach(var element in allClasses)
                 {
                     SchoolClass c = new SchoolClass();
