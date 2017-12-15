@@ -4,6 +4,8 @@ using System.Windows;
 using GradeCalculator.Model;
 using GradeCalculator.Presenters;
 using System.Windows.Controls;
+using System;
+using System.Windows.Input;
 
 namespace GradeCalculator.Windows
 {
@@ -24,7 +26,10 @@ namespace GradeCalculator.Windows
 
         private void generateExcelButton_Click(object sender, RoutedEventArgs e)
         {
-            this.presenter.GenerateExcelReport(classes);
+            using (new WaitCursor())
+            {
+                this.presenter.GenerateExcelReport(classes);
+            }
         }
 
         public void SetClassBindings(ObservableCollection<SchoolClass> collection)
@@ -76,6 +81,22 @@ namespace GradeCalculator.Windows
             }
 
             this.classGrid.Columns[0].Width = new DataGridLength(0.01, DataGridLengthUnitType.Star);
+        }
+
+        private class WaitCursor : IDisposable
+        {
+            private Cursor _previousCurosr;
+
+            public WaitCursor()
+            {
+                _previousCurosr = Mouse.OverrideCursor;
+                Mouse.OverrideCursor = Cursors.Wait;
+            }
+
+            public void Dispose()
+            {
+                Mouse.OverrideCursor = _previousCurosr;
+            }
         }
     }
 }
