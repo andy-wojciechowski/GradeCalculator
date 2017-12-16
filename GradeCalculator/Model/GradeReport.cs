@@ -24,6 +24,7 @@ namespace GradeCalculator.Model
                 Workbook excelWorkbook = null;
                 Worksheet excelWorksheet = null;
 
+                excelApp.Visible = true;
                 excelWorkbook = excelApp.Workbooks.Add();
                 excelWorksheet = excelWorkbook.Worksheets[1];
 
@@ -60,8 +61,6 @@ namespace GradeCalculator.Model
                 }
 
                 excelWorkbook.SaveAs(string.Format("{0}\\Grade Report", filePath), FileFormat:XlFileFormat.xlWorkbookDefault);
-                excelWorkbook.Close();
-                excelApp.Quit();
 
                 Marshal.ReleaseComObject(excelWorksheet);
                 Marshal.ReleaseComObject(excelWorkbook);
