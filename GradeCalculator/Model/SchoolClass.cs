@@ -34,13 +34,18 @@ namespace GradeCalculator.Model
             double pointsTotal = 0D;
             foreach(var gradeCategory in this.Categories)
             {
+                //First gather the relevant assignments for this category
                 var relevantAssignments = this.Assignments.Where(x => x.Category.Name.Equals(gradeCategory.Name));
-                double totalPointsEarnedInCategory = this.Assignments.Sum(x => x.TotalPointsEarned);
-                double totalPossiblePoints = this.Assignments.Sum(x => x.TotalPossiblePoints);
+                //Sum the total points earned in the category
+                double totalPointsEarnedInCategory = relevantAssignments.Sum(x => x.TotalPointsEarned);
+                double totalPossiblePoints = relevantAssignments.Sum(x => x.TotalPossiblePoints);
+
+                //Next get the category worth as a number we can work with
                 double worth = gradeCategory.CategoryWeight * 100;
 
-                double pointsOutOfWorth = (totalPointsEarnedInCategory / totalPossiblePoints) * worth;
-                pointsTotal += pointsOutOfWorth * 100;
+                double commonDenominator = (worth / totalPossiblePoints);
+
+                pointsTotal += totalPointsEarnedInCategory * commonDenominator;
             }
             return pointsTotal;
         }
