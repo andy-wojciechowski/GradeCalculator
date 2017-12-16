@@ -57,7 +57,7 @@ namespace GradeCalculator.Model
                         rowIndex += 1;
                     }
                     excelWorksheet.Cells[rowIndex, cellIndex] = "Final Class Grade";
-                    excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("{0:P2}", c.CalculateFinalGrade());
+                    excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("{0}", c.CalculateFinalGrade());
                 }
 
                 excelWorkbook.SaveAs(string.Format("{0}\\Grade Report", filePath), FileFormat:XlFileFormat.xlWorkbookDefault);

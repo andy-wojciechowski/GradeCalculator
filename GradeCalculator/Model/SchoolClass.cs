@@ -32,14 +32,17 @@ namespace GradeCalculator.Model
         public double CalculateFinalGrade()
         {
             double pointsTotal = 0D;
-            double percentagesTotal = this.Categories.Sum(x => x.CategoryWeight);
             foreach(var gradeCategory in this.Categories)
             {
                 var relevantAssignments = this.Assignments.Where(x => x.Category.Name.Equals(gradeCategory.Name));
-                var totalPoints = relevantAssignments.Sum(x => x.TotalPointsEarned);
-                pointsTotal += totalPoints * gradeCategory.CategoryWeight;
+                double totalPointsEarnedInCategory = this.Assignments.Sum(x => x.TotalPointsEarned);
+                double totalPossiblePoints = this.Assignments.Sum(x => x.TotalPossiblePoints);
+                double worth = gradeCategory.CategoryWeight * 100;
+
+                double pointsOutOfWorth = (totalPointsEarnedInCategory / totalPossiblePoints) * worth;
+                pointsTotal += pointsOutOfWorth * 100;
             }
-            return pointsTotal / percentagesTotal;
+            return pointsTotal;
         }
 
         public Dictionary<string, List<Assignment>> GetAssignmentsByCategory()
