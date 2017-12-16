@@ -47,13 +47,13 @@ namespace GradeCalculator.Model
                         rowIndex += 1;
                         foreach(var assignment in kvp.Value)
                         {
-                            excelWorksheet.Cells[rowIndex, cellIndex] = assignment.Name;
-                            excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("{0}/{1}", assignment.TotalPointsEarned, assignment.TotalPossiblePoints);
+                            excelWorksheet.Cells[rowIndex, cellIndex] = string.Format("=\"{0}\"", assignment.Name);
+                            excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("=\"{0}/{1}\"", assignment.TotalPointsEarned, assignment.TotalPossiblePoints);
                             rowIndex += 1;
                         }
                         excelWorksheet.Cells[rowIndex, cellIndex] = "Total Category Grade";
                         var totalCategoryGrade = c.CalculateTotalCategoryGrade(kvp.Key);
-                        excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("{0}/{1}", totalCategoryGrade.Item1, totalCategoryGrade.Item2);
+                        excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("=\"{0}/{1}\"", totalCategoryGrade.Item1, totalCategoryGrade.Item2);
                         rowIndex += 1;
                     }
                     excelWorksheet.Cells[rowIndex, cellIndex] = "Final Class Grade";
