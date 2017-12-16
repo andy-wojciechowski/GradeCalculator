@@ -38,7 +38,7 @@ namespace GradeCalculator.Windows
             binding2.Path = new PropertyPath("CategoryWeight");
             binding2.Mode = BindingMode.TwoWay;
             binding2.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-            binding2.StringFormat = "##.##";
+            binding2.StringFormat = "D2";
 
             //Set the 2 bindings
             BindingOperations.SetBinding(nameTextBox, TextBox.TextProperty, binding1);
