@@ -24,7 +24,6 @@ namespace GradeCalculator.Model
                 Workbook excelWorkbook = null;
                 Worksheet excelWorksheet = null;
 
-                excelApp.Visible = true;
                 excelWorkbook = excelApp.Workbooks.Add();
                 excelWorksheet = excelWorkbook.Worksheets[1];
 
@@ -60,8 +59,7 @@ namespace GradeCalculator.Model
                     excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("{0:P2}", c.CalculateFinalGrade());
                 }
 
-                string currentDate = DateTime.Now.ToString("dd/MM/yyyy");
-                excelWorkbook.SaveAs(string.Format("{0}\\Grades as of {1}.xlsx", filePath, currentDate));
+                excelWorkbook.SaveAs(string.Format("{0}\\Grade Report", filePath), FileFormat:XlFileFormat.xlWorkbookDefault);
                 excelWorkbook.Close();
                 excelApp.Quit();
 
