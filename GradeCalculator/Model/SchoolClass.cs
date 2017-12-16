@@ -53,9 +53,9 @@ namespace GradeCalculator.Model
             return result;
         }
 
-        public Tuple<double, double> CalculateTotalCategoryGrade(string Name)
+        public Tuple<double, double> CalculateTotalCategoryGrade(string categoryName)
         {
-            var relevantAssignments = this.Assignments.Where(x => x.Category.Name.Equals(name)).ToList();
+            var relevantAssignments = this.Assignments.Where(x => x.Category.Name.Equals(categoryName)).ToList();
             double totalEarnedPoints = relevantAssignments.Sum(x => x.TotalPointsEarned);
             double totalPossiblePoints = relevantAssignments.Sum(x => x.TotalPossiblePoints);
 
