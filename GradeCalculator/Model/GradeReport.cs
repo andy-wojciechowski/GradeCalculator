@@ -60,6 +60,8 @@ namespace GradeCalculator.Model
                     excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("{0}", c.CalculateFinalGrade());
                 }
 
+                excelWorksheet.Columns["A:B"].AutoFit();
+
                 excelWorkbook.SaveAs(string.Format("{0}\\Grade Report", filePath), FileFormat:XlFileFormat.xlWorkbookDefault);
 
                 Marshal.ReleaseComObject(excelWorksheet);
