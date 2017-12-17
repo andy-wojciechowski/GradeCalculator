@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GradeCalculator.Windows"
         mc:Ignorable="d"
-        Title="Grade Calculator" Height="534.107" Width="500" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="Grade Calculator" Height="538.907" Width="500" Closing="Window_Closing" Loaded="Window_Loaded">
     <Grid Margin="0,30,-0.4,-2.6">
-        <DataGrid x:Name="classGrid" HorizontalAlignment="Left" Height="421" Margin="10,10,0,0" VerticalAlignment="Top" Width="474"/>
-        <Button x:Name="generateExcelButton" Content="Generate Excel Report" HorizontalAlignment="Left" Margin="10,442,0,0" VerticalAlignment="Top" Width="131" Click="generateExcelButton_Click"/>
+        <DataGrid x:Name="classGrid" HorizontalAlignment="Left" Height="421" Margin="14,10,0,0" VerticalAlignment="Top" Width="460"/>
+        <Button x:Name="generateExcelButton" Content="Generate Excel Report" HorizontalAlignment="Left" Margin="17,440,0,0" VerticalAlignment="Top" Width="131" Click="generateExcelButton_Click" Height="25"/>
         <Menu HorizontalAlignment="Left" Height="20" Margin="0,-29,0,0" VerticalAlignment="Top" Width="492">
             <MenuItem Header="Edit">
                 <MenuItem x:Name="editClassMenuItem" Header="Edit Class" Click="editClassMenuItem_Click"/>

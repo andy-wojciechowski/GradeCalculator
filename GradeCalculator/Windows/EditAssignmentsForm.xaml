@@ -15,7 +15,7 @@
         <Label Content="Category:" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
         <Label Content="Total Points Earned:" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.632,0.258"/>
         <Label Content="Total Points Possible:" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.541,-0.414"/>
-        <Button x:Name="okButton" Content="Ok" HorizontalAlignment="Left" Margin="305,145,0,0" VerticalAlignment="Top" Width="75" Click="okButton_Click"/>
+        <Button x:Name="okButton" Content="Ok" HorizontalAlignment="Left" Margin="292,145,0,0" VerticalAlignment="Top" Width="75" Click="okButton_Click" Height="20"/>
 
     </Grid>
 </Window>
