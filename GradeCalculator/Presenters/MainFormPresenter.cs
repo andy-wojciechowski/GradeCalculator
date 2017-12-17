@@ -9,11 +9,10 @@ namespace GradeCalculator.Presenters
     {
         public MainFormPresenter(MainForm form) : base(form) { }
 
-        public void GenerateExcelReport(ObservableCollection<SchoolClass> classes)
+        public void GenerateExcelReport(ObservableCollection<SchoolClass> classes, string directoryPath)
         {
             GradeReport report = new GradeReport(classes.ToList());
-            //TODO: Prompt the user for an actual directory
-            report.GenerateReport("C:\\temp");
+            report.GenerateReport(directoryPath);
         }
 
         public void ReadExistingData()
