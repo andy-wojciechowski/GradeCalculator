@@ -1,5 +1,6 @@
-﻿using GradeCalculator.Model;
-using GradeCalculator.Presenters;
+﻿using GradeCalculator.DependencyResolution;
+using GradeCalculator.Interfaces.Presenters;
+using GradeCalculator.Model;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,16 +10,23 @@ namespace GradeCalculator.Windows
     /// <summary>
     /// Interaction logic for EditClassFormxaml.xaml
     /// </summary>
-    public partial class EditClassForm : Window
+    public partial class EditClassWindow : Window
     {
-        private EditClassPresenter presenter { get; set; }
+        private IEditClassPresenter presenter { get; set; }
 
-        public EditClassForm(SchoolClass data)
+        public EditClassWindow(SchoolClass data)
         {
             InitializeComponent();
-            this.presenter = new EditClassPresenter(this, data);
+            using (var container = ObjectFactory.GetContainer())
+            {
+                this.presenter = container.GetInstance<IEditClassPresenter>();
+            }
+            this.presenter.SetView(this);
+            this.presenter.SetClass(data);
+            this.presenter.SetDataBindings();
         }
 
+        //TODO: Move this to EditClassPresenter
         public void InitalizeDataBinding(SchoolClass data)
         {
             //Name Property

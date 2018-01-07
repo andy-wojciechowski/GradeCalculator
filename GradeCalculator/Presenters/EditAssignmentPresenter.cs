@@ -1,21 +1,34 @@
-﻿using GradeCalculator.Model;
+﻿using GradeCalculator.Interfaces.Presenters;
+using GradeCalculator.Model;
 using GradeCalculator.Windows;
 using System.Collections.ObjectModel;
 
 namespace GradeCalculator.Presenters
 {
-    public class EditAssignmentPresenter : BasePresenter<EditAssignmentsForm>
+    public class EditAssignmentPresenter : IEditAssignmentPresenter
     {
+        private EditAssignmentsWindow view { get; set; }
+        private ObservableCollection<GradeCategory> categories { get; set; }
         private Assignment data { get; set; }
-        public EditAssignmentPresenter(EditAssignmentsForm form, Assignment assignment, ObservableCollection<GradeCategory> categories) : base(form)
+
+        public void SetView(EditAssignmentsWindow view)
         {
-            this.data = assignment;
-            this.SetDataBinding(categories);
+            this.view = view;
         }
 
-        private void SetDataBinding(ObservableCollection<GradeCategory> categories)
+        public void SetAssignment(Assignment assignment)
         {
-            this.View.InitializeDataBinding(this.data, categories);
+            this.data = assignment;
+        }
+
+        public void SetGradeCategories(ObservableCollection<GradeCategory> categories)
+        {
+            this.categories = categories;
+        }
+
+        public void SetDataBindings()
+        {
+            this.view.InitializeDataBinding(this.data, this.categories);
         }
     }
 }

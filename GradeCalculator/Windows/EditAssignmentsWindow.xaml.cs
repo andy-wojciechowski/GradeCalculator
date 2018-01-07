@@ -1,5 +1,6 @@
-﻿using GradeCalculator.Model;
-using GradeCalculator.Presenters;
+﻿using GradeCalculator.DependencyResolution;
+using GradeCalculator.Interfaces.Presenters;
+using GradeCalculator.Model;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,14 +11,21 @@ namespace GradeCalculator.Windows
     /// <summary>
     /// Interaction logic for EditAssignmentsForm.xaml
     /// </summary>
-    public partial class EditAssignmentsForm : Window
+    public partial class EditAssignmentsWindow : Window
     {
-        private EditAssignmentPresenter presenter { get; set; }
+        private IEditAssignmentPresenter presenter { get; set; }
 
-        public EditAssignmentsForm(Assignment assignment, ObservableCollection<GradeCategory> categories)
+        public EditAssignmentsWindow(Assignment assignment, ObservableCollection<GradeCategory> categories)
         {
             InitializeComponent();
-            this.presenter = new EditAssignmentPresenter(this, assignment, categories);
+            using (var container = ObjectFactory.GetContainer())
+            {
+                this.presenter = container.GetInstance<IEditAssignmentPresenter>();
+            }
+            this.presenter.SetView(this);
+            this.presenter.SetGradeCategories(categories);
+            this.presenter.SetAssignment(assignment);
+            this.presenter.SetDataBindings();
         }
 
         private void okButton_Click(object sender, RoutedEventArgs e)
@@ -25,6 +33,7 @@ namespace GradeCalculator.Windows
             this.Close();
         }
 
+        //TODO: Move this to the EditAssignmentPresenter
         public void InitializeDataBinding(Assignment assignment, ObservableCollection<GradeCategory> categories)
         {
             //First bind the readonly combobox

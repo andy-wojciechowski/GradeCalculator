@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="StructureMap, Version=4.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StructureMap.4.5.3\lib\net45\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
@@ -55,23 +58,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Presenters\BasePresenter.cs" />
+    <Compile Include="DependencyResolution\ObjectFactory.cs" />
+    <Compile Include="Interfaces\Presenters\IEditAssignmentPresenter.cs" />
+    <Compile Include="Interfaces\Presenters\IEditCategoryPresenter.cs" />
+    <Compile Include="Interfaces\Presenters\IEditClassPresenter.cs" />
+    <Compile Include="Interfaces\Presenters\IMainWindowPresenter.cs" />
     <Compile Include="Presenters\EditAssignmentPresenter.cs" />
-    <Compile Include="Windows\EditAssignmentsForm.xaml.cs">
-      <DependentUpon>EditAssignmentsForm.xaml</DependentUpon>
+    <Compile Include="Windows\EditAssignmentsWindow.xaml.cs">
+      <DependentUpon>EditAssignmentsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\EditCategoryForm.xaml.cs">
-      <DependentUpon>EditCategoryForm.xaml</DependentUpon>
+    <Compile Include="Windows\EditCategoryWindow.xaml.cs">
+      <DependentUpon>EditCategoryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presenters\EditCategoryPresenter.cs" />
-    <Compile Include="Windows\EditClassForm.xaml.cs">
-      <DependentUpon>EditClassForm.xaml</DependentUpon>
+    <Compile Include="Windows\EditClassWindow.xaml.cs">
+      <DependentUpon>EditClassWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presenters\EditClassPresenter.cs" />
-    <Compile Include="Windows\MainForm.xaml.cs">
-      <DependentUpon>MainForm.xaml</DependentUpon>
+    <Compile Include="Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presenters\MainFormPresenter.cs" />
+    <Compile Include="Presenters\MainWindowPresenter.cs" />
     <Compile Include="Model\SchoolClass.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -99,6 +106,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -137,19 +145,19 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Windows\EditAssignmentsForm.xaml">
+    <Page Include="Windows\EditAssignmentsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\EditCategoryForm.xaml">
+    <Page Include="Windows\EditCategoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\EditClassForm.xaml">
+    <Page Include="Windows\EditClassWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\MainForm.xaml">
+    <Page Include="Windows\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

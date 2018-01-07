@@ -1,20 +1,27 @@
 ﻿using GradeCalculator.Model;
 using GradeCalculator.Windows;
+using GradeCalculator.Interfaces.Presenters;
 
 namespace GradeCalculator.Presenters
 {
-    public class EditCategoryPresenter : BasePresenter<EditCategoryForm>
+    public class EditCategoryPresenter : IEditCategoryPresenter
     {
         private GradeCategory category { get; set; }
-        public EditCategoryPresenter(EditCategoryForm form, GradeCategory category) : base(form)
+        private EditCategoryWindow view { get; set; }
+
+        public void SetCategory(GradeCategory category)
         {
             this.category = category;
-            this.InitializeDataBinding();
         }
 
-        private void InitializeDataBinding()
+        public void SetDataBindings()
         {
-            this.View.InitializeDataBinding(this.category);
+            this.view.InitializeDataBinding(category);
+        }
+
+        public void SetView(EditCategoryWindow view)
+        {
+            this.view = view;
         }
     }
 }

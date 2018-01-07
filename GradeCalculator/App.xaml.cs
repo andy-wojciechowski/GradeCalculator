@@ -101,7 +101,7 @@ namespace GradeCalculator
                                     from assignment in c.Assignments
                                     select new XElement("Assignment",
                                                         new XAttribute("Name", assignment.Name),
-                                                        new XAttribute("CategoryName", assignment.Category.Name),
+                                                        new XAttribute("CategoryName", assignment.Category != null ? assignment.Category.Name : string.Empty),
                                                         new XAttribute("TotalPointsEarned", assignment.TotalPointsEarned),
                                                         new XAttribute("TotalPossiblePoints", assignment.TotalPossiblePoints))));
         }

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using GradeCalculator.DependencyResolution;
+using GradeCalculator.Interfaces.Presenters;
+using GradeCalculator.Model;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
-using GradeCalculator.Model;
-using GradeCalculator.Presenters;
 using System.Windows.Controls;
 using WinForms = System.Windows.Forms;
 
@@ -11,15 +12,19 @@ namespace GradeCalculator.Windows
     /// <summary>
     /// Interaction logic for MainForm.xaml
     /// </summary>
-    public partial class MainForm : Window
+    public partial class MainWindow : Window
     {
-        private MainFormPresenter presenter { get; set; }
+        private IMainWindowPresenter presenter { get; set; }
         private ObservableCollection<SchoolClass> classes { get; set;}
 
-        public MainForm()
+        public MainWindow()
         {
             InitializeComponent();
-            this.presenter = new MainFormPresenter(this);
+            using (var container = ObjectFactory.GetContainer())
+            {
+                this.presenter = container.GetInstance<IMainWindowPresenter>();
+            }
+            this.presenter.SetView(this);
             this.presenter.ReadExistingData();
         }
 
@@ -36,6 +41,7 @@ namespace GradeCalculator.Windows
             this.presenter.GenerateExcelReport(classes, directoryPath);
         }
 
+        //TODO: Move this to MainWindowPresenter
         public void SetClassBindings(ObservableCollection<SchoolClass> collection)
         {
             this.classes = collection;

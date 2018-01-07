@@ -1,5 +1,6 @@
-﻿using GradeCalculator.Model;
-using GradeCalculator.Presenters;
+﻿using GradeCalculator.DependencyResolution;
+using GradeCalculator.Interfaces.Presenters;
+using GradeCalculator.Model;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,13 +10,19 @@ namespace GradeCalculator.Windows
     /// <summary>
     /// Interaction logic for EditCategoryForm.xaml
     /// </summary>
-    public partial class EditCategoryForm : Window
+    public partial class EditCategoryWindow : Window
     {
-        private EditCategoryPresenter presenter { get; set; }
-        public EditCategoryForm(GradeCategory category)
+        private IEditCategoryPresenter presenter { get; set; }
+        public EditCategoryWindow(GradeCategory category)
         {
             InitializeComponent();
-            this.presenter = new EditCategoryPresenter(this, category);
+            using (var container = ObjectFactory.GetContainer())
+            {
+                this.presenter = container.GetInstance<IEditCategoryPresenter>();
+            }
+            this.presenter.SetView(this);
+            this.presenter.SetCategory(category);
+            this.presenter.SetDataBindings();
         }
 
         private void okButton_Click(object sender, RoutedEventArgs e)
@@ -23,6 +30,7 @@ namespace GradeCalculator.Windows
             this.Close();
         }
 
+        //TODO: Move this to EditCategoryPresenter
         public void InitializeDataBinding(GradeCategory category)
         {
             //Name Property

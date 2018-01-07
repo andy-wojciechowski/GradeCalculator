@@ -1,13 +1,14 @@
-﻿using GradeCalculator.Model;
+﻿using GradeCalculator.Interfaces.Presenters;
+using GradeCalculator.Model;
 using GradeCalculator.Windows;
 using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace GradeCalculator.Presenters
 {
-    public class MainFormPresenter : BasePresenter<MainForm>
+    public class MainWindowPresenter : IMainWindowPresenter
     {
-        public MainFormPresenter(MainForm form) : base(form) { }
+        private MainWindow View { get; set; }
 
         public void GenerateExcelReport(ObservableCollection<SchoolClass> classes, string directoryPath)
         {
@@ -23,7 +24,7 @@ namespace GradeCalculator.Presenters
 
         public void UpdateClass(SchoolClass classToUpdate)
         {
-            EditClassForm form = new EditClassForm(classToUpdate);
+            EditClassWindow form = new EditClassWindow(classToUpdate);
             form.Show();
         }
 
@@ -31,9 +32,13 @@ namespace GradeCalculator.Presenters
         {
             SchoolClass newClass = new SchoolClass() { Name = string.Empty, Assignments = new ObservableCollection<Assignment>(), Categories = new ObservableCollection<GradeCategory>() };
             this.View.UpdateObservableCollection(newClass);
-            EditClassForm form = new EditClassForm(newClass);
+            EditClassWindow form = new EditClassWindow(newClass);
             form.Show();
         }
 
+        public void SetView(MainWindow view)
+        {
+            this.View = view;
+        }
     }
 }
