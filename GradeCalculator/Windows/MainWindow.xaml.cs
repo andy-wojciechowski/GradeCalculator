@@ -1,8 +1,7 @@
 ﻿using GradeCalculator.DependencyResolution;
 using GradeCalculator.Interfaces.Presenters;
+using GradeCalculator.Interfaces.Views;
 using GradeCalculator.Model;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using WinForms = System.Windows.Forms;
@@ -12,10 +11,9 @@ namespace GradeCalculator.Windows
     /// <summary>
     /// Interaction logic for MainForm.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IMainWindowView
     {
         private IMainWindowPresenter presenter { get; set; }
-        private ObservableCollection<SchoolClass> classes { get; set;}
 
         public MainWindow()
         {
@@ -38,14 +36,7 @@ namespace GradeCalculator.Windows
                 directoryPath = fileDialog.SelectedPath;
             }
 
-            this.presenter.GenerateExcelReport(classes, directoryPath);
-        }
-
-        //TODO: Move this to MainWindowPresenter
-        public void SetClassBindings(ObservableCollection<SchoolClass> collection)
-        {
-            this.classes = collection;
-            this.classGrid.ItemsSource = this.classes;
+            this.presenter.GenerateExcelReport(directoryPath);
         }
 
         private void editClassMenuItem_Click(object sender, RoutedEventArgs e)
@@ -69,12 +60,7 @@ namespace GradeCalculator.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            App.WriteToXml(new List<SchoolClass>(this.classes));
-        }
-
-        public void UpdateObservableCollection(SchoolClass classToAdd)
-        {
-            this.classes.Add(classToAdd);
+            this.presenter.WriteToXML();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

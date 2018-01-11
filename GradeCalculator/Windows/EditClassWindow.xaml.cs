@@ -1,5 +1,6 @@
 ﻿using GradeCalculator.DependencyResolution;
 using GradeCalculator.Interfaces.Presenters;
+using GradeCalculator.Interfaces.Views;
 using GradeCalculator.Model;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,7 +11,7 @@ namespace GradeCalculator.Windows
     /// <summary>
     /// Interaction logic for EditClassFormxaml.xaml
     /// </summary>
-    public partial class EditClassWindow : Window
+    public partial class EditClassWindow : Window, IEditClassView
     {
         private IEditClassPresenter presenter { get; set; }
 
@@ -26,22 +27,9 @@ namespace GradeCalculator.Windows
             this.presenter.SetDataBindings();
         }
 
-        //TODO: Move this to EditClassPresenter
-        public void InitalizeDataBinding(SchoolClass data)
+        public void InitializeDataBinding(Binding nameBinding)
         {
-            //Name Property
-            Binding binding = new Binding();
-            binding.Source = data;
-            binding.Path = new PropertyPath("Name");
-            binding.Mode = BindingMode.TwoWay;
-            binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-            BindingOperations.SetBinding(nameTextBox, TextBox.TextProperty, binding);
-
-            //Grade Categories
-            this.categoryGrid.ItemsSource = data.Categories;
-
-            //Assignments
-            this.assignmentsDataGrid.ItemsSource = data.Assignments;
+            BindingOperations.SetBinding(nameTextBox, TextBox.TextProperty, nameBinding);
         }
 
         private void editAssignmentButton_Click(object sender, RoutedEventArgs e)

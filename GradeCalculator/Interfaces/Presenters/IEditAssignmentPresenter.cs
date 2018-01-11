@@ -1,12 +1,12 @@
-﻿using GradeCalculator.Model;
-using GradeCalculator.Windows;
+﻿using GradeCalculator.Interfaces.Views;
+using GradeCalculator.Model;
 using System.Collections.ObjectModel;
 
 namespace GradeCalculator.Interfaces.Presenters
 {
     public interface IEditAssignmentPresenter
     {
-        void SetView(EditAssignmentsWindow view);
+        void SetView(IEditAssignmentsView view);
         void SetAssignment(Assignment assignment);
         void SetGradeCategories(ObservableCollection<GradeCategory> categories);
         void SetDataBindings();

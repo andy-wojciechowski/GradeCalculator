@@ -1,11 +1,11 @@
-﻿using GradeCalculator.Model;
-using GradeCalculator.Windows;
+﻿using GradeCalculator.Interfaces.Views;
+using GradeCalculator.Model;
 
 namespace GradeCalculator.Interfaces.Presenters
 {
     public interface IEditClassPresenter
     {
-        void SetView(EditClassWindow view);
+        void SetView(IEditClassView view);
         void SetClass(SchoolClass model);
         void UpdateAssignment(Assignment assignment);
         void AddAssignment();

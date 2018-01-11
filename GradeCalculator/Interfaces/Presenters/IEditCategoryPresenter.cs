@@ -1,11 +1,11 @@
-﻿using GradeCalculator.Model;
-using GradeCalculator.Windows;
+﻿using GradeCalculator.Interfaces.Views;
+using GradeCalculator.Model;
 
 namespace GradeCalculator.Interfaces.Presenters
 {
     public interface IEditCategoryPresenter
     {
-        void SetView(EditCategoryWindow view);
+        void SetView(IEditCategoryView view);
         void SetCategory(GradeCategory category);
         void SetDataBindings();
     }

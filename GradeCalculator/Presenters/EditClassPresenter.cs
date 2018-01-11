@@ -1,12 +1,15 @@
 ﻿using GradeCalculator.Model;
 using GradeCalculator.Windows;
 using GradeCalculator.Interfaces.Presenters;
+using GradeCalculator.Interfaces.Views;
+using System.Windows.Data;
+using System.Windows;
 
 namespace GradeCalculator.Presenters
 {
     public class EditClassPresenter : IEditClassPresenter
     {
-        private EditClassWindow view;
+        private IEditClassView view { get; set; }
         private SchoolClass data { get; set; }
 
         public void UpdateAssignment(Assignment assignment)
@@ -39,10 +42,26 @@ namespace GradeCalculator.Presenters
 
         public void SetDataBindings()
         {
-            this.view.InitalizeDataBinding(this.data);
+            var window = this.view as EditClassWindow;
+            if(window != null)
+            {
+                //Grade Categories
+                window.categoryGrid.ItemsSource = this.data.Categories;
+
+                //Assignments
+                window.assignmentsDataGrid.ItemsSource = this.data.Assignments;
+
+                //Name Property
+                Binding nameBinding = new Binding();
+                nameBinding.Source = data;
+                nameBinding.Path = new PropertyPath("Name");
+                nameBinding.Mode = BindingMode.TwoWay;
+                nameBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                this.view.InitializeDataBinding(nameBinding);
+            }
         }
 
-        public void SetView(EditClassWindow view)
+        public void SetView(IEditClassView view)
         {
             this.view = view;
         }

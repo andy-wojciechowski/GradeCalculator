@@ -63,6 +63,10 @@
     <Compile Include="Interfaces\Presenters\IEditCategoryPresenter.cs" />
     <Compile Include="Interfaces\Presenters\IEditClassPresenter.cs" />
     <Compile Include="Interfaces\Presenters\IMainWindowPresenter.cs" />
+    <Compile Include="Interfaces\Views\IEditAssignmentsView.cs" />
+    <Compile Include="Interfaces\Views\IEditCategoryView.cs" />
+    <Compile Include="Interfaces\Views\IEditClassView.cs" />
+    <Compile Include="Interfaces\Views\IMainWindowView.cs" />
     <Compile Include="Presenters\EditAssignmentPresenter.cs" />
     <Compile Include="Windows\EditAssignmentsWindow.xaml.cs">
       <DependentUpon>EditAssignmentsWindow.xaml</DependentUpon>
