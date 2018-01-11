@@ -1,5 +1,4 @@
-﻿using GradeCalculator.DependencyResolution;
-using GradeCalculator.Interfaces.Presenters;
+﻿using GradeCalculator.Interfaces.Presenters;
 using GradeCalculator.Interfaces.Views;
 using GradeCalculator.Model;
 using System.Windows;
@@ -15,21 +14,19 @@ namespace GradeCalculator.Windows
     {
         private IEditClassPresenter presenter { get; set; }
 
-        public EditClassWindow(SchoolClass data)
+        public EditClassWindow()
         {
             InitializeComponent();
-            using (var container = ObjectFactory.GetContainer())
-            {
-                this.presenter = container.GetInstance<IEditClassPresenter>();
-            }
-            this.presenter.SetView(this);
-            this.presenter.SetClass(data);
-            this.presenter.SetDataBindings();
         }
 
         public void InitializeDataBinding(Binding nameBinding)
         {
             BindingOperations.SetBinding(nameTextBox, TextBox.TextProperty, nameBinding);
+        }
+
+        public void SetPresenter(IEditClassPresenter presenter)
+        {
+            this.presenter = presenter;
         }
 
         private void editAssignmentButton_Click(object sender, RoutedEventArgs e)

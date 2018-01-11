@@ -1,8 +1,5 @@
-﻿using GradeCalculator.DependencyResolution;
-using GradeCalculator.Interfaces.Presenters;
+﻿using GradeCalculator.Interfaces.Presenters;
 using GradeCalculator.Interfaces.Views;
-using GradeCalculator.Model;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,22 +13,14 @@ namespace GradeCalculator.Windows
     {
         private IEditAssignmentPresenter presenter { get; set; }
 
-        public EditAssignmentsWindow(Assignment assignment, ObservableCollection<GradeCategory> categories)
+        public EditAssignmentsWindow()
         {
             InitializeComponent();
-            using (var container = ObjectFactory.GetContainer())
-            {
-                this.presenter = container.GetInstance<IEditAssignmentPresenter>();
-            }
-            this.presenter.SetView(this);
-            this.presenter.SetGradeCategories(categories);
-            this.presenter.SetAssignment(assignment);
-            this.presenter.SetDataBindings();
         }
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.presenter.CloseView();
         }
 
         public void InitializeDataBinding(Binding nameBinding, Binding categoryBinding, Binding totalPointsEarnedBinding, Binding totalPossiblePointsBinding)
@@ -41,6 +30,11 @@ namespace GradeCalculator.Windows
             BindingOperations.SetBinding(categoryCombobox, ComboBox.SelectedIndexProperty, categoryBinding);
             BindingOperations.SetBinding(totalPointsEarnedTextBox, TextBox.TextProperty, totalPointsEarnedBinding);
             BindingOperations.SetBinding(totalPointsPossibleTextBox, TextBox.TextProperty, totalPossiblePointsBinding);
+        }
+
+        public void SetPresenter(IEditAssignmentPresenter presenter)
+        {
+            this.presenter = presenter;
         }
     }
 }

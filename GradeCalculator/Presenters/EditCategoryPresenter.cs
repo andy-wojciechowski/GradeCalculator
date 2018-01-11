@@ -16,6 +16,12 @@ namespace GradeCalculator.Presenters
             this.category = category;
         }
 
+        public void CloseView()
+        {
+            var window = this.view as Windows.EditCategoryWindow;
+            window.Close();
+        }
+
         public void SetDataBindings()
         {
             //Name Property

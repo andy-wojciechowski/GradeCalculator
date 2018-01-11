@@ -18,6 +18,11 @@ namespace GradeCalculator.Windows
         public MainWindow()
         {
             InitializeComponent();
+            this.Initialize();
+        }
+
+        public void Initialize()
+        {
             using (var container = ObjectFactory.GetContainer())
             {
                 this.presenter = container.GetInstance<IMainWindowPresenter>();

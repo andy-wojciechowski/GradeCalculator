@@ -1,4 +1,5 @@
-﻿using GradeCalculator.Interfaces.Presenters;
+﻿using GradeCalculator.DependencyResolution;
+using GradeCalculator.Interfaces.Presenters;
 using GradeCalculator.Interfaces.Views;
 using GradeCalculator.Model;
 using GradeCalculator.Windows;
@@ -31,16 +32,34 @@ namespace GradeCalculator.Presenters
 
         public void UpdateClass(SchoolClass classToUpdate)
         {
-            EditClassWindow form = new EditClassWindow(classToUpdate);
-            form.Show();
+            IEditClassView view = new EditClassWindow();
+            using (var container = ObjectFactory.GetContainer())
+            {
+                var presenter = container.GetInstance<IEditClassPresenter>();
+                view.SetPresenter(presenter);
+                presenter.SetView(view);
+                presenter.SetClass(classToUpdate);
+                presenter.SetDataBindings();
+            }
+            var window = view as EditClassWindow;
+            if(window != null) { window.Show(); }
         }
 
         public void NewClass()
         {
             SchoolClass newClass = new SchoolClass() { Name = string.Empty, Assignments = new ObservableCollection<Assignment>(), Categories = new ObservableCollection<GradeCategory>() };
             this.classes.Add(newClass);
-            EditClassWindow form = new EditClassWindow(newClass);
-            form.Show();
+            IEditClassView view = new EditClassWindow();
+            using (var container = ObjectFactory.GetContainer())
+            {
+                var presenter = container.GetInstance<IEditClassPresenter>();
+                view.SetPresenter(presenter);
+                presenter.SetView(view);
+                presenter.SetClass(newClass);
+                presenter.SetDataBindings();
+            }
+            var window = view as EditClassWindow;
+            if(window != null) { window.Show(); }
         }
 
         public void SetView(IMainWindowView view)

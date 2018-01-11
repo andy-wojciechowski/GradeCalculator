@@ -66,5 +66,11 @@ namespace GradeCalculator.Presenters
                 this.view.InitializeDataBinding(nameBinding, categoryBinding, totalPointsEarnedBinding, totalPossiblePointsBinding);
             }
         }
+
+        public void CloseView()
+        {
+            var window = this.view as Windows.EditAssignmentsWindow;
+            window.Close();
+        }
     }
 }

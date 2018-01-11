@@ -1,7 +1,5 @@
-﻿using GradeCalculator.DependencyResolution;
-using GradeCalculator.Interfaces.Presenters;
+﻿using GradeCalculator.Interfaces.Presenters;
 using GradeCalculator.Interfaces.Views;
-using GradeCalculator.Model;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,21 +12,19 @@ namespace GradeCalculator.Windows
     public partial class EditCategoryWindow : Window, IEditCategoryView
     {
         private IEditCategoryPresenter presenter { get; set; }
-        public EditCategoryWindow(GradeCategory category)
+        public EditCategoryWindow()
         {
             InitializeComponent();
-            using (var container = ObjectFactory.GetContainer())
-            {
-                this.presenter = container.GetInstance<IEditCategoryPresenter>();
-            }
-            this.presenter.SetView(this);
-            this.presenter.SetCategory(category);
-            this.presenter.SetDataBindings();
+        }
+
+        public void SetPresenter(IEditCategoryPresenter presenter)
+        {
+            this.presenter = presenter;
         }
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.presenter.CloseView();
         }
 
         public void InitializeDataBinding(Binding nameBinding, Binding worthBinding)
