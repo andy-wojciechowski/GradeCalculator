@@ -8,20 +8,20 @@ using System.Windows;
 
 namespace GradeCalculator.Presenters
 {
-    public class EditClassPresenter : IEditClassPresenter
+    public class EditClassCategoriesPresenter : IEditClassCategoriesPresenter
     {
-        private IEditClassView view { get; set; }
+        private IEditClassCategoriesView view { get; set; }
         private SchoolClass data { get; set; }
 
         public void UpdateAssignment(Assignment assignment)
         {
-            IEditAssignmentsView view = new EditAssignmentsWindow();
+            IEditAssignmentsView view = new EditAssignmentsWindow(false);
             using (var container = ObjectFactory.GetContainer())
             {
                 var presenter = container.GetInstance<IEditAssignmentPresenter>();
                 view.SetPresenter(presenter);
                 presenter.SetView(view);
-                presenter.SetGradeCategories(data.Categories);
+                presenter.SetGradeCategories(((SchoolClassCategories)data).Categories);
                 presenter.SetAssignment(assignment);
                 presenter.SetDataBindings();
             }
@@ -33,13 +33,13 @@ namespace GradeCalculator.Presenters
         {
             Assignment newAssignment = new Assignment() { Name = string.Empty, Category = null, TotalPointsEarned = 0D, TotalPossiblePoints = 0D };
             this.data.Assignments.Add(newAssignment);
-            IEditAssignmentsView view = new EditAssignmentsWindow();
+            IEditAssignmentsView view = new EditAssignmentsWindow(false);
             using (var container = ObjectFactory.GetContainer())
             {
                 var presenter = container.GetInstance<IEditAssignmentPresenter>();
                 view.SetPresenter(presenter);
                 presenter.SetView(view);
-                presenter.SetGradeCategories(data.Categories);
+                presenter.SetGradeCategories(((SchoolClassCategories)data).Categories);
                 presenter.SetAssignment(newAssignment);
                 presenter.SetDataBindings();
             }
@@ -65,7 +65,7 @@ namespace GradeCalculator.Presenters
         public void AddCategory()
         {
             GradeCategory category = new GradeCategory() { Name = string.Empty, CategoryWeight = 0D };
-            this.data.Categories.Add(category);
+            ((SchoolClassCategories)this.data).Categories.Add(category);
             IEditCategoryView view = new EditCategoryWindow();
             using (var container = ObjectFactory.GetContainer())
             {
@@ -81,11 +81,11 @@ namespace GradeCalculator.Presenters
 
         public void SetDataBindings()
         {
-            var window = this.view as EditClassWindow;
+            var window = this.view as EditClassCategoriesWindow;
             if(window != null)
             {
                 //Grade Categories
-                window.categoryGrid.ItemsSource = this.data.Categories;
+                window.categoryGrid.ItemsSource = ((SchoolClassCategories)this.data).Categories;
 
                 //Assignments
                 window.assignmentsDataGrid.ItemsSource = this.data.Assignments;
@@ -100,7 +100,7 @@ namespace GradeCalculator.Presenters
             }
         }
 
-        public void SetView(IEditClassView view)
+        public void SetView(IEditClassCategoriesView view)
         {
             this.view = view;
         }

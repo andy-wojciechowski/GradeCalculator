@@ -61,13 +61,18 @@
     <Compile Include="DependencyResolution\ObjectFactory.cs" />
     <Compile Include="Interfaces\Presenters\IEditAssignmentPresenter.cs" />
     <Compile Include="Interfaces\Presenters\IEditCategoryPresenter.cs" />
-    <Compile Include="Interfaces\Presenters\IEditClassPresenter.cs" />
+    <Compile Include="Interfaces\Presenters\IEditClassCategoriesPresenter.cs" />
+    <Compile Include="Interfaces\Presenters\IEditClassPointsPresenter.cs" />
     <Compile Include="Interfaces\Presenters\IMainWindowPresenter.cs" />
     <Compile Include="Interfaces\Views\IEditAssignmentsView.cs" />
     <Compile Include="Interfaces\Views\IEditCategoryView.cs" />
-    <Compile Include="Interfaces\Views\IEditClassView.cs" />
+    <Compile Include="Interfaces\Views\IEditClassCategoriesView.cs" />
+    <Compile Include="Interfaces\Views\IEditClassPointsView.cs" />
     <Compile Include="Interfaces\Views\IMainWindowView.cs" />
+    <Compile Include="Model\SchoolClassCategories.cs" />
+    <Compile Include="Model\SchoolClassPoints.cs" />
     <Compile Include="Presenters\EditAssignmentPresenter.cs" />
+    <Compile Include="Presenters\EditClassPointsPresenter.cs" />
     <Compile Include="Windows\EditAssignmentsWindow.xaml.cs">
       <DependentUpon>EditAssignmentsWindow.xaml</DependentUpon>
     </Compile>
@@ -75,10 +80,13 @@
       <DependentUpon>EditCategoryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presenters\EditCategoryPresenter.cs" />
-    <Compile Include="Windows\EditClassWindow.xaml.cs">
-      <DependentUpon>EditClassWindow.xaml</DependentUpon>
+    <Compile Include="Windows\EditClassCategoriesWindow.xaml.cs">
+      <DependentUpon>EditClassCategoriesWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presenters\EditClassPresenter.cs" />
+    <Compile Include="Presenters\EditClassCategoriesPresenter.cs" />
+    <Compile Include="Windows\EditClassPointsWindow.xaml.cs">
+      <DependentUpon>EditClassPointsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -157,7 +165,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\EditClassWindow.xaml">
+    <Page Include="Windows\EditClassCategoriesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EditClassPointsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -35,30 +35,33 @@ namespace GradeCalculator.Model
                 {
                     excelWorksheet.Cells[rowIndex, cellIndex] = string.Format("Class: {0}", c.Name);
                     rowIndex += 2;
-                    var assignments = c.GetAssignmentsByCategory();
-                    foreach(var kvp in assignments)
+                    if(c is SchoolClassCategories)
                     {
-                        double worth = c.Categories.Single(x => x.Name.Equals(kvp.Key)).CategoryWeight;
-                        excelWorksheet.Cells[rowIndex, cellIndex] = string.Format("Grade Category: {0}", kvp.Key);
-                        rowIndex += 1;
-                        excelWorksheet.Cells[rowIndex, cellIndex] = string.Format("Category Weight: {0}", string.Format("{0:P2}", worth));
-                        rowIndex += 2;
-                        excelWorksheet.Cells[rowIndex, cellIndex] = "Assignment Breakdown";
-                        rowIndex += 1;
-                        foreach(var assignment in kvp.Value)
+                        var classCategories = (SchoolClassCategories)c;
+                        var assignments = classCategories.GetAssignmentsByCategory();
+                        foreach (var kvp in assignments)
                         {
-                            excelWorksheet.Cells[rowIndex, cellIndex] = string.Format("=\"{0}\"", assignment.Name);
-                            excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("=\"{0}/{1}\"", assignment.TotalPointsEarned, assignment.TotalPossiblePoints);
+                            double worth = classCategories.Categories.Single(x => x.Name.Equals(kvp.Key)).CategoryWeight;
+                            excelWorksheet.Cells[rowIndex, cellIndex] = string.Format("Grade Category: {0}", kvp.Key);
                             rowIndex += 1;
+                            excelWorksheet.Cells[rowIndex, cellIndex] = string.Format("Category Weight: {0}", string.Format("{0:P2}", worth));
+                            rowIndex += 2;
+                            SetAssignmentBreakdown(excelWorksheet, kvp.Value, rowIndex, cellIndex);
+                            rowIndex += 3;
+                            excelWorksheet.Cells[rowIndex, cellIndex] = "Total Category Grade";
+                            var totalCategoryGrade = classCategories.CalculateTotalCategoryGrade(kvp.Key);
+                            excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("=\"{0}/{1}\"", totalCategoryGrade.Item1, totalCategoryGrade.Item2);
+                            rowIndex += 2;
                         }
-                        rowIndex += 1;
-                        excelWorksheet.Cells[rowIndex, cellIndex] = "Total Category Grade";
-                        var totalCategoryGrade = c.CalculateTotalCategoryGrade(kvp.Key);
-                        excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("=\"{0}/{1}\"", totalCategoryGrade.Item1, totalCategoryGrade.Item2);
-                        rowIndex += 2;
+                    }
+                    else
+                    {
+                        SetAssignmentBreakdown(excelWorksheet, new List<Assignment>(c.Assignments), rowIndex, cellIndex);
+                        rowIndex += 3;
                     }
                     excelWorksheet.Cells[rowIndex, cellIndex] = "Final Class Grade";
                     excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("{0}", c.CalculateFinalGrade());
+                    rowIndex += 2;
                 }
 
                 excelWorksheet.Columns["A:B"].AutoFit();
@@ -76,6 +79,18 @@ namespace GradeCalculator.Model
                 sb.AppendLine();
                 sb.Append(ex.ToString());
                 System.Windows.MessageBox.Show(sb.ToString(), "Grade Calculator", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            }
+        }
+
+        private void SetAssignmentBreakdown(Worksheet excelWorksheet, List<Assignment> assignments, int rowIndex, int cellIndex)
+        {
+            excelWorksheet.Cells[rowIndex, cellIndex] = "Assignment Breakdown";
+            rowIndex += 1;
+            foreach (var assignment in assignments)
+            {
+                excelWorksheet.Cells[rowIndex, cellIndex] = string.Format("=\"{0}\"", assignment.Name);
+                excelWorksheet.Cells[rowIndex, cellIndex + 1] = string.Format("=\"{0}/{1}\"", assignment.TotalPointsEarned, assignment.TotalPossiblePoints);
+                rowIndex += 1;
             }
         }
     }

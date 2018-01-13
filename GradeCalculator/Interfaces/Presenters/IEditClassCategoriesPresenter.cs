@@ -3,9 +3,9 @@ using GradeCalculator.Model;
 
 namespace GradeCalculator.Interfaces.Presenters
 {
-    public interface IEditClassPresenter
+    public interface IEditClassCategoriesPresenter
     {
-        void SetView(IEditClassView view);
+        void SetView(IEditClassCategoriesView view);
         void SetClass(SchoolClass model);
         void UpdateAssignment(Assignment assignment);
         void AddAssignment();

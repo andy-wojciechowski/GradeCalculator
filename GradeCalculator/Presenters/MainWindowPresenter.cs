@@ -32,33 +32,67 @@ namespace GradeCalculator.Presenters
 
         public void UpdateClass(SchoolClass classToUpdate)
         {
-            IEditClassView view = new EditClassWindow();
-            using (var container = ObjectFactory.GetContainer())
+            if(classToUpdate is SchoolClassCategories)
             {
-                var presenter = container.GetInstance<IEditClassPresenter>();
-                view.SetPresenter(presenter);
-                presenter.SetView(view);
-                presenter.SetClass(classToUpdate);
-                presenter.SetDataBindings();
+                IEditClassCategoriesView view = new EditClassCategoriesWindow();
+                using (var container = ObjectFactory.GetContainer())
+                {
+                    var presenter = container.GetInstance<IEditClassCategoriesPresenter>();
+                    view.SetPresenter(presenter);
+                    presenter.SetView(view);
+                    presenter.SetClass(classToUpdate);
+                    presenter.SetDataBindings();
+                }
+                var window = view as EditClassCategoriesWindow;
+                if (window != null) { window.Show(); }
             }
-            var window = view as EditClassWindow;
-            if(window != null) { window.Show(); }
+            else
+            {
+                IEditClassPointsView view = new EditClassPointsWindow();
+                using (var container = ObjectFactory.GetContainer())
+                {
+                    var presenter = container.GetInstance<IEditClassPointsPresenter>();
+                    view.SetPresenter(presenter);
+                    presenter.SetView(view);
+                    presenter.SetClass(classToUpdate);
+                    presenter.SetDataBindings();
+                }
+                var window = view as EditClassPointsWindow;
+                if(window != null) { window.Show(); }
+            }
         }
 
-        public void NewClass()
+        public void NewClassWithCategories()
         {
-            SchoolClass newClass = new SchoolClass() { Name = string.Empty, Assignments = new ObservableCollection<Assignment>(), Categories = new ObservableCollection<GradeCategory>() };
+            SchoolClass newClass = new SchoolClassCategories() { Name = string.Empty, Assignments = new ObservableCollection<Assignment>(), Categories = new ObservableCollection<GradeCategory>() };
             this.classes.Add(newClass);
-            IEditClassView view = new EditClassWindow();
+            IEditClassCategoriesView view = new EditClassCategoriesWindow();
             using (var container = ObjectFactory.GetContainer())
             {
-                var presenter = container.GetInstance<IEditClassPresenter>();
+                var presenter = container.GetInstance<IEditClassCategoriesPresenter>();
                 view.SetPresenter(presenter);
                 presenter.SetView(view);
                 presenter.SetClass(newClass);
                 presenter.SetDataBindings();
             }
-            var window = view as EditClassWindow;
+            var window = view as EditClassCategoriesWindow;
+            if(window != null) { window.Show(); }
+        }
+
+        public void NewClassWithNoCategories()
+        {
+            SchoolClass newClass = new SchoolClassPoints() { Name = string.Empty, Assignments = new ObservableCollection<Assignment>() };
+            this.classes.Add(newClass);
+            IEditClassPointsView view = new EditClassPointsWindow();
+            using (var container = ObjectFactory.GetContainer())
+            {
+                var presenter = container.GetInstance<IEditClassPointsPresenter>();
+                view.SetPresenter(presenter);
+                presenter.SetView(view);
+                presenter.SetClass(newClass);
+                presenter.SetDataBindings();
+            }
+            var window = view as EditClassPointsWindow;
             if(window != null) { window.Show(); }
         }
 

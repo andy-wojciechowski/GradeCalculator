@@ -13,9 +13,10 @@ namespace GradeCalculator.Windows
     {
         private IEditAssignmentPresenter presenter { get; set; }
 
-        public EditAssignmentsWindow()
+        public EditAssignmentsWindow(bool noCategories)
         {
             InitializeComponent();
+            if(noCategories) { this.categoryCombobox.IsEnabled = false; }
         }
 
         private void okButton_Click(object sender, RoutedEventArgs e)
@@ -27,7 +28,7 @@ namespace GradeCalculator.Windows
         {
             //Set all the data bindings
             BindingOperations.SetBinding(nameTextBox, TextBox.TextProperty, nameBinding);
-            BindingOperations.SetBinding(categoryCombobox, ComboBox.SelectedIndexProperty, categoryBinding);
+            BindingOperations.SetBinding(categoryCombobox, ComboBox.SelectedItemProperty, categoryBinding);
             BindingOperations.SetBinding(totalPointsEarnedTextBox, TextBox.TextProperty, totalPointsEarnedBinding);
             BindingOperations.SetBinding(totalPointsPossibleTextBox, TextBox.TextProperty, totalPossiblePointsBinding);
         }

@@ -12,7 +12,10 @@
         <Menu HorizontalAlignment="Left" Height="20" Margin="0,-29,0,0" VerticalAlignment="Top" Width="492">
             <MenuItem Header="Edit">
                 <MenuItem x:Name="editClassMenuItem" Header="Edit Class" Click="editClassMenuItem_Click"/>
-                <MenuItem x:Name="addClassMenuItem" Header="Add Class" Click="addClassMenuItem_Click"/>
+                <MenuItem x:Name="addClassMenuItem" Header="Add Class">
+                    <MenuItem x:Name="addClassCategoriesMenuItem" Header="With Grade Categories" Click="addClassCategoriesMenuItem_Click"/>
+                    <MenuItem x:Name="addClassPointsMenuItem" Header="No Grade Categories" Click="addClassPointsMenuItem_Click"></MenuItem>
+                </MenuItem>
             </MenuItem>
         </Menu>
 

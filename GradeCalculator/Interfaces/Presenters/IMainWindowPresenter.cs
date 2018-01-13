@@ -9,7 +9,8 @@ namespace GradeCalculator.Interfaces.Presenters
         void GenerateExcelReport(string directoryPath);
         void ReadExistingData();
         void UpdateClass(SchoolClass classToUpdate);
-        void NewClass();
+        void NewClassWithCategories();
+        void NewClassWithNoCategories();
         void WriteToXML();
     }
 }

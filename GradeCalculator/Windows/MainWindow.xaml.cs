@@ -58,9 +58,14 @@ namespace GradeCalculator.Windows
             }
         }
 
-        private void addClassMenuItem_Click(object sender, RoutedEventArgs e)
+        private void addClassCategoriesMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            this.presenter.NewClass();
+            this.presenter.NewClassWithCategories();
+        }
+
+        private void addClassPointsMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.presenter.NewClassWithNoCategories();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

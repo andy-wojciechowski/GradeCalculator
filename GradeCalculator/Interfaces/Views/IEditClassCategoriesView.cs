@@ -3,9 +3,9 @@ using System.Windows.Data;
 
 namespace GradeCalculator.Interfaces.Views
 {
-    public interface IEditClassView
+    public interface IEditClassCategoriesView
     {
         void InitializeDataBinding(Binding nameBinding);
-        void SetPresenter(IEditClassPresenter presenter);
+        void SetPresenter(IEditClassCategoriesPresenter presenter);
     }
 }

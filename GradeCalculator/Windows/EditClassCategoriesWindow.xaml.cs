@@ -10,11 +10,11 @@ namespace GradeCalculator.Windows
     /// <summary>
     /// Interaction logic for EditClassFormxaml.xaml
     /// </summary>
-    public partial class EditClassWindow : Window, IEditClassView
+    public partial class EditClassCategoriesWindow : Window, IEditClassCategoriesView
     {
-        private IEditClassPresenter presenter { get; set; }
+        private IEditClassCategoriesPresenter presenter { get; set; }
 
-        public EditClassWindow()
+        public EditClassCategoriesWindow()
         {
             InitializeComponent();
         }
@@ -24,7 +24,7 @@ namespace GradeCalculator.Windows
             BindingOperations.SetBinding(nameTextBox, TextBox.TextProperty, nameBinding);
         }
 
-        public void SetPresenter(IEditClassPresenter presenter)
+        public void SetPresenter(IEditClassCategoriesPresenter presenter)
         {
             this.presenter = presenter;
         }
