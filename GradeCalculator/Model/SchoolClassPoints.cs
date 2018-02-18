@@ -9,7 +9,7 @@ namespace GradeCalculator.Model
             var totalEarnedPoints = this.Assignments.Sum(x => x.TotalPointsEarned);
             var totalPossiblePoints = this.Assignments.Sum(x => x.TotalPossiblePoints);
 
-            return totalEarnedPoints / totalPossiblePoints;
+            return (totalEarnedPoints / totalPossiblePoints) * 100;
         }
     }
 }
