@@ -1,6 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using GradeCalculator.Model;
+﻿using GradeCalculator.Model;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.ObjectModel;
 
 namespace GradeCalculator.Tests.Model
