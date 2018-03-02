@@ -1,6 +1,5 @@
 ﻿using GradeCalculator.Interfaces.Presenters;
 using GradeCalculator.Interfaces.Views;
-using GradeCalculator.Model;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,7 +11,11 @@ namespace GradeCalculator.Windows
     /// </summary>
     public partial class EditClassCategoriesWindow : Window, IEditClassCategoriesView
     {
-        private IEditClassCategoriesPresenter presenter { get; set; }
+        private IEditClassCategoriesPresenter Presenter { get; set; }
+
+        public DataGrid CategoryGrid => this.categoryGrid;
+
+        public DataGrid AssignmentsGrid => this.assignmentsDataGrid;
 
         public EditClassCategoriesWindow()
         {
@@ -26,7 +29,7 @@ namespace GradeCalculator.Windows
 
         public void SetPresenter(IEditClassCategoriesPresenter presenter)
         {
-            this.presenter = presenter;
+            this.Presenter = presenter;
         }
 
         private void editAssignmentButton_Click(object sender, RoutedEventArgs e)
@@ -37,16 +40,14 @@ namespace GradeCalculator.Windows
             }
             else
             {
-                if (this.assignmentsDataGrid.SelectedIndex == -1) { this.assignmentsDataGrid.SelectedIndex = 0;  }
-                Assignment selectedAssignment = (Assignment)this.assignmentsDataGrid.SelectedItem;
-                this.presenter.UpdateAssignment(selectedAssignment);
+                this.Presenter.UpdateAssignment();
             }
         }
 
 
         private void addAssignmentButton_Click(object sender, RoutedEventArgs e)
         {
-            this.presenter.AddAssignment();
+            this.Presenter.AddAssignment();
         }
 
         private void editCategoryButton_Click(object sender, RoutedEventArgs e)
@@ -57,15 +58,13 @@ namespace GradeCalculator.Windows
             }
             else
             {
-                if (this.categoryGrid.SelectedIndex == -1) { this.categoryGrid.SelectedIndex = 0; }
-                GradeCategory selectedCategory = (GradeCategory)this.categoryGrid.SelectedItem;
-                this.presenter.UpdateCategory(selectedCategory);
+                this.Presenter.UpdateCategory();
             }
         }
 
         private void addCategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            this.presenter.AddCategory();
+            this.Presenter.AddCategory();
         }
 
         private void editClassForm_Loaded(object sender, RoutedEventArgs e)
@@ -93,6 +92,11 @@ namespace GradeCalculator.Windows
 
             this.categoryGrid.Columns[0].Width = new DataGridLength(0.01, DataGridLengthUnitType.Star);
             this.assignmentsDataGrid.Columns[0].Width = new DataGridLength(0.01, DataGridLengthUnitType.Star);
+        }
+
+        public void ShowWindow()
+        {
+            this.Show();
         }
     }
 }

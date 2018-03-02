@@ -1,7 +1,6 @@
 ﻿using GradeCalculator.DependencyResolution;
 using GradeCalculator.Interfaces.Presenters;
 using GradeCalculator.Interfaces.Views;
-using GradeCalculator.Model;
 using System.Windows;
 using System.Windows.Controls;
 using WinForms = System.Windows.Forms;
@@ -13,7 +12,9 @@ namespace GradeCalculator.Windows
     /// </summary>
     public partial class MainWindow : Window, IMainWindowView
     {
-        private IMainWindowPresenter presenter { get; set; }
+        private IMainWindowPresenter Presenter { get; set; }
+
+        public DataGrid ClassesGrid => this.classGrid;
 
         public MainWindow()
         {
@@ -25,10 +26,10 @@ namespace GradeCalculator.Windows
         {
             using (var container = ObjectFactory.GetContainer())
             {
-                this.presenter = container.GetInstance<IMainWindowPresenter>();
+                this.Presenter = container.GetInstance<IMainWindowPresenter>();
             }
-            this.presenter.SetView(this);
-            this.presenter.ReadExistingData();
+            this.Presenter.SetView(this);
+            this.Presenter.ReadExistingData();
         }
 
         private void generateExcelButton_Click(object sender, RoutedEventArgs e)
@@ -41,7 +42,7 @@ namespace GradeCalculator.Windows
                 directoryPath = fileDialog.SelectedPath;
             }
 
-            this.presenter.GenerateExcelReport(directoryPath);
+            this.Presenter.GenerateExcelReport(directoryPath);
         }
 
         private void editClassMenuItem_Click(object sender, RoutedEventArgs e)
@@ -52,25 +53,23 @@ namespace GradeCalculator.Windows
             }
             else
             {
-                if(this.classGrid.SelectedIndex == -1) { this.classGrid.SelectedIndex = 0; }
-                var schoolClass = (SchoolClass)this.classGrid.SelectedItem;
-                this.presenter.UpdateClass(schoolClass);
+                this.Presenter.UpdateClass();
             }
         }
 
         private void addClassCategoriesMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            this.presenter.NewClassWithCategories();
+            this.Presenter.NewClassWithCategories();
         }
 
         private void addClassPointsMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            this.presenter.NewClassWithNoCategories();
+            this.Presenter.NewClassWithNoCategories();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            this.presenter.WriteToXML();
+            this.Presenter.WriteToXML();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

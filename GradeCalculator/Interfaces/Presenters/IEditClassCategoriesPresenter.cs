@@ -7,9 +7,9 @@ namespace GradeCalculator.Interfaces.Presenters
     {
         void SetView(IEditClassCategoriesView view);
         void SetClass(SchoolClass model);
-        void UpdateAssignment(Assignment assignment);
+        void UpdateAssignment();
         void AddAssignment();
-        void UpdateCategory(GradeCategory category);
+        void UpdateCategory();
         void AddCategory();
         void SetDataBindings();
     }

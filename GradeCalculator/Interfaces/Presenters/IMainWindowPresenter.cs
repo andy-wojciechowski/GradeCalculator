@@ -1,5 +1,4 @@
 ﻿using GradeCalculator.Interfaces.Views;
-using GradeCalculator.Model;
 
 namespace GradeCalculator.Interfaces.Presenters
 {
@@ -8,7 +7,7 @@ namespace GradeCalculator.Interfaces.Presenters
         void SetView(IMainWindowView view);
         void GenerateExcelReport(string directoryPath);
         void ReadExistingData();
-        void UpdateClass(SchoolClass classToUpdate);
+        void UpdateClass();
         void NewClassWithCategories();
         void NewClassWithNoCategories();
         void WriteToXML();

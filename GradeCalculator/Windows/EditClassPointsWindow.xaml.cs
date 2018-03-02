@@ -1,6 +1,5 @@
 ﻿using GradeCalculator.Interfaces.Presenters;
 using GradeCalculator.Interfaces.Views;
-using GradeCalculator.Model;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,6 +12,8 @@ namespace GradeCalculator.Windows
     public partial class EditClassPointsWindow : Window, IEditClassPointsView
     {
         private IEditClassPointsPresenter Presenter { get; set; }
+
+        public DataGrid AssignmentsDataGrid => this.assignmentsDataGrid;
 
         public EditClassPointsWindow()
         {
@@ -37,9 +38,7 @@ namespace GradeCalculator.Windows
             }
             else
             {
-                if (this.assignmentsDataGrid.SelectedIndex == -1) { this.assignmentsDataGrid.SelectedIndex = 0; }
-                Assignment selectedAssignment = (Assignment)this.assignmentsDataGrid.SelectedItem;
-                this.Presenter.UpdateAssignment(selectedAssignment);
+                this.Presenter.UpdateAssignment();
             }
         }
 
@@ -63,6 +62,11 @@ namespace GradeCalculator.Windows
             }
 
             this.assignmentsDataGrid.Columns[0].Width = new DataGridLength(0.01, DataGridLengthUnitType.Star);
+        }
+
+        public void ShowWindow()
+        {
+            this.Show();
         }
     }
 }

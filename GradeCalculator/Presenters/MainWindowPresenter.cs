@@ -12,27 +12,26 @@ namespace GradeCalculator.Presenters
     public class MainWindowPresenter : IMainWindowPresenter
     {
         private IMainWindowView View { get; set; }
-        private ObservableCollection<SchoolClass> classes { get; set; }
+        private ObservableCollection<SchoolClass> Classes { get; set; }
 
         public void GenerateExcelReport(string directoryPath)
         {
-            GradeReport report = new GradeReport(classes.ToList());
+            GradeReport report = new GradeReport(Classes.ToList());
             report.GenerateReport(directoryPath);
         }
 
         public void ReadExistingData()
         {
-            this.classes = new ObservableCollection<SchoolClass>(App.ReadFromXml());
-            var window = this.View as MainWindow;
-            if(window != null)
-            {
-                window.classGrid.ItemsSource = this.classes;
-            }
+            this.Classes = new ObservableCollection<SchoolClass>(App.ReadFromXml());
+            this.View.ClassesGrid.ItemsSource = this.Classes;
         }
 
-        public void UpdateClass(SchoolClass classToUpdate)
+        public void UpdateClass()
         {
-            if(classToUpdate is SchoolClassCategories)
+            if (this.View.ClassesGrid.SelectedIndex == -1) { this.View.ClassesGrid.SelectedIndex = 0; }
+            var classToUpdate = (SchoolClass)this.View.ClassesGrid.SelectedItem;
+
+            if (classToUpdate is SchoolClassCategories)
             {
                 IEditClassCategoriesView view = new EditClassCategoriesWindow();
                 using (var container = ObjectFactory.GetContainer())
@@ -43,8 +42,7 @@ namespace GradeCalculator.Presenters
                     presenter.SetClass(classToUpdate);
                     presenter.SetDataBindings();
                 }
-                var window = view as EditClassCategoriesWindow;
-                if (window != null) { window.Show(); }
+                view.ShowWindow();
             }
             else
             {
@@ -57,15 +55,14 @@ namespace GradeCalculator.Presenters
                     presenter.SetClass(classToUpdate);
                     presenter.SetDataBindings();
                 }
-                var window = view as EditClassPointsWindow;
-                if(window != null) { window.Show(); }
+                view.ShowWindow();
             }
         }
 
         public void NewClassWithCategories()
         {
             SchoolClass newClass = new SchoolClassCategories() { Name = string.Empty, Assignments = new ObservableCollection<Assignment>(), Categories = new ObservableCollection<GradeCategory>() };
-            this.classes.Add(newClass);
+            this.Classes.Add(newClass);
             IEditClassCategoriesView view = new EditClassCategoriesWindow();
             using (var container = ObjectFactory.GetContainer())
             {
@@ -75,14 +72,13 @@ namespace GradeCalculator.Presenters
                 presenter.SetClass(newClass);
                 presenter.SetDataBindings();
             }
-            var window = view as EditClassCategoriesWindow;
-            if(window != null) { window.Show(); }
+            view.ShowWindow();
         }
 
         public void NewClassWithNoCategories()
         {
             SchoolClass newClass = new SchoolClassPoints() { Name = string.Empty, Assignments = new ObservableCollection<Assignment>() };
-            this.classes.Add(newClass);
+            this.Classes.Add(newClass);
             IEditClassPointsView view = new EditClassPointsWindow();
             using (var container = ObjectFactory.GetContainer())
             {
@@ -92,8 +88,7 @@ namespace GradeCalculator.Presenters
                 presenter.SetClass(newClass);
                 presenter.SetDataBindings();
             }
-            var window = view as EditClassPointsWindow;
-            if(window != null) { window.Show(); }
+            view.ShowWindow();
         }
 
         public void SetView(IMainWindowView view)
@@ -103,7 +98,7 @@ namespace GradeCalculator.Presenters
 
         public void WriteToXML()
         {
-            App.WriteToXml(new List<SchoolClass>(this.classes));
+            App.WriteToXml(new List<SchoolClass>(this.Classes));
         }
     }
 }

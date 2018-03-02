@@ -10,13 +10,13 @@ namespace GradeCalculator.Presenters
 {
     public class EditClassPointsPresenter : IEditClassPointsPresenter
     {
-        private IEditClassPointsView view { get; set; }
-        private SchoolClass data { get; set; }
+        private IEditClassPointsView View { get; set; }
+        private SchoolClass Data { get; set; }
 
         public void AddAssignment()
         {
             Assignment newAssignment = new Assignment() { Name = string.Empty, Category = null, TotalPointsEarned = 0D, TotalPossiblePoints = 0D };
-            this.data.Assignments.Add(newAssignment);
+            this.Data.Assignments.Add(newAssignment);
             IEditAssignmentsView view = new EditAssignmentsWindow(true);
             using (var container = ObjectFactory.GetContainer())
             {
@@ -27,40 +27,38 @@ namespace GradeCalculator.Presenters
                 presenter.SetAssignment(newAssignment);
                 presenter.SetDataBindings();
             }
-            var window = view as EditAssignmentsWindow;
-            if (window != null) { window.Show(); }
+            view.ShowWindow();
         }
 
         public void SetClass(SchoolClass model)
         {
-            this.data = model;
+            this.Data = model;
         }
 
         public void SetDataBindings()
         {
-            var window = this.view as EditClassPointsWindow;
-            if (window != null)
-            {
-                //Assignments
-                window.assignmentsDataGrid.ItemsSource = this.data.Assignments;
+            //Assignments
+            this.View.AssignmentsDataGrid.ItemsSource = this.Data.Assignments;
 
-                //Name Property
-                Binding nameBinding = new Binding();
-                nameBinding.Source = data;
-                nameBinding.Path = new PropertyPath("Name");
-                nameBinding.Mode = BindingMode.TwoWay;
-                nameBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-                this.view.InitializeDataBinding(nameBinding);
-            }
+            //Name Property
+            Binding nameBinding = new Binding();
+            nameBinding.Source = Data;
+            nameBinding.Path = new PropertyPath("Name");
+            nameBinding.Mode = BindingMode.TwoWay;
+            nameBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            this.View.InitializeDataBinding(nameBinding);
         }
 
         public void SetView(IEditClassPointsView view)
         {
-            this.view = view;
+            this.View = view;
         }
 
-        public void UpdateAssignment(Assignment assignment)
+        public void UpdateAssignment()
         {
+            if (this.View.AssignmentsDataGrid.SelectedIndex == -1) { this.View.AssignmentsDataGrid.SelectedIndex = 0; }
+            Assignment assignment = (Assignment)this.View.AssignmentsDataGrid.SelectedItem;
+
             IEditAssignmentsView view = new EditAssignmentsWindow(true);
             using (var container = ObjectFactory.GetContainer())
             {
@@ -71,8 +69,7 @@ namespace GradeCalculator.Presenters
                 presenter.SetAssignment(assignment);
                 presenter.SetDataBindings();
             }
-            var window = view as EditAssignmentsWindow;
-            if (window != null) { window.Show(); }
+            view.ShowWindow();
         }
     }
 }

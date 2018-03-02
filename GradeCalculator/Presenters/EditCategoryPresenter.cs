@@ -8,42 +8,41 @@ namespace GradeCalculator.Presenters
 {
     public class EditCategoryPresenter : IEditCategoryPresenter
     {
-        private GradeCategory category { get; set; }
-        private IEditCategoryView view { get; set; }
+        private GradeCategory Categories { get; set; }
+        private IEditCategoryView View { get; set; }
 
         public void SetCategory(GradeCategory category)
         {
-            this.category = category;
+            this.Categories = category;
         }
 
         public void CloseView()
         {
-            var window = this.view as Windows.EditCategoryWindow;
-            window.Close();
+            this.View.CloseWindow();
         }
 
         public void SetDataBindings()
         {
             //Name Property
             Binding nameBinding = new Binding();
-            nameBinding.Source = this.category;
+            nameBinding.Source = this.Categories;
             nameBinding.Path = new PropertyPath("Name");
             nameBinding.Mode = BindingMode.TwoWay;
             nameBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
 
             //Worth Property
             Binding worthBinding = new Binding();
-            worthBinding.Source = this.category;
+            worthBinding.Source = this.Categories;
             worthBinding.Path = new PropertyPath("CategoryWeight");
             worthBinding.Mode = BindingMode.TwoWay;
             worthBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
 
-            this.view.InitializeDataBinding(nameBinding, worthBinding);
+            this.View.InitializeDataBinding(nameBinding, worthBinding);
         }
 
         public void SetView(IEditCategoryView view)
         {
-            this.view = view;
+            this.View = view;
         }
     }
 }

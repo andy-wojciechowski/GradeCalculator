@@ -11,7 +11,7 @@ namespace GradeCalculator.Windows
     /// </summary>
     public partial class EditCategoryWindow : Window, IEditCategoryView
     {
-        private IEditCategoryPresenter presenter { get; set; }
+        private IEditCategoryPresenter Presenter { get; set; }
         public EditCategoryWindow()
         {
             InitializeComponent();
@@ -19,12 +19,12 @@ namespace GradeCalculator.Windows
 
         public void SetPresenter(IEditCategoryPresenter presenter)
         {
-            this.presenter = presenter;
+            this.Presenter = presenter;
         }
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            this.presenter.CloseView();
+            this.Presenter.CloseView();
         }
 
         public void InitializeDataBinding(Binding nameBinding, Binding worthBinding)
@@ -32,6 +32,16 @@ namespace GradeCalculator.Windows
             //Set the 2 bindings
             BindingOperations.SetBinding(nameTextBox, TextBox.TextProperty, nameBinding);
             BindingOperations.SetBinding(worthTextBox, TextBox.TextProperty, worthBinding);
+        }
+
+        public void ShowWindow()
+        {
+            this.Show();
+        }
+
+        public void CloseWindow()
+        {
+            this.Close();
         }
     }
 }
