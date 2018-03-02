@@ -1,6 +1,5 @@
 ﻿using GradeCalculator.Interfaces.Presenters;
 using GradeCalculator.Interfaces.Views;
-using GradeCalculator.Model;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -41,9 +40,7 @@ namespace GradeCalculator.Windows
             }
             else
             {
-                if (this.assignmentsDataGrid.SelectedIndex == -1) { this.assignmentsDataGrid.SelectedIndex = 0;  }
-                Assignment selectedAssignment = (Assignment)this.assignmentsDataGrid.SelectedItem;
-                this.presenter.UpdateAssignment(selectedAssignment);
+                this.presenter.UpdateAssignment();
             }
         }
 
@@ -61,9 +58,7 @@ namespace GradeCalculator.Windows
             }
             else
             {
-                if (this.categoryGrid.SelectedIndex == -1) { this.categoryGrid.SelectedIndex = 0; }
-                GradeCategory selectedCategory = (GradeCategory)this.categoryGrid.SelectedItem;
-                this.presenter.UpdateCategory(selectedCategory);
+                this.presenter.UpdateCategory();
             }
         }
 

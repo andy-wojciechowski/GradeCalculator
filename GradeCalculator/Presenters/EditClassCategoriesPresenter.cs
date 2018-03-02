@@ -13,8 +13,11 @@ namespace GradeCalculator.Presenters
         private IEditClassCategoriesView view { get; set; }
         private SchoolClass data { get; set; }
 
-        public void UpdateAssignment(Assignment assignment)
+        public void UpdateAssignment()
         {
+            if (this.view.AssignmentsGrid.SelectedIndex == -1) { this.view.AssignmentsGrid.SelectedIndex = 0; }
+            Assignment assignment = (Assignment)this.view.AssignmentsGrid.SelectedItem;
+
             IEditAssignmentsView view = new EditAssignmentsWindow(false);
             using (var container = ObjectFactory.GetContainer())
             {
@@ -45,8 +48,11 @@ namespace GradeCalculator.Presenters
             view.ShowWindow();
         }
 
-        public void UpdateCategory(GradeCategory category)
+        public void UpdateCategory()
         {
+            if (this.view.CategoryGrid.SelectedIndex == -1) { this.view.CategoryGrid.SelectedIndex = 0; }
+            GradeCategory category = (GradeCategory)this.view.CategoryGrid.SelectedItem;
+
             IEditCategoryView view = new EditCategoryWindow();
             using (var container = ObjectFactory.GetContainer())
             {

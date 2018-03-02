@@ -26,9 +26,12 @@ namespace GradeCalculator.Presenters
             this.View.ClassesGrid.ItemsSource = this.classes;
         }
 
-        public void UpdateClass(SchoolClass classToUpdate)
+        public void UpdateClass()
         {
-            if(classToUpdate is SchoolClassCategories)
+            if (this.View.ClassesGrid.SelectedIndex == -1) { this.View.ClassesGrid.SelectedIndex = 0; }
+            var classToUpdate = (SchoolClass)this.View.ClassesGrid.SelectedItem;
+
+            if (classToUpdate is SchoolClassCategories)
             {
                 IEditClassCategoriesView view = new EditClassCategoriesWindow();
                 using (var container = ObjectFactory.GetContainer())

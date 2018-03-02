@@ -54,8 +54,11 @@ namespace GradeCalculator.Presenters
             this.view = view;
         }
 
-        public void UpdateAssignment(Assignment assignment)
+        public void UpdateAssignment()
         {
+            if (this.view.AssignmentsDataGrid.SelectedIndex == -1) { this.view.AssignmentsDataGrid.SelectedIndex = 0; }
+            Assignment assignment = (Assignment)this.view.AssignmentsDataGrid.SelectedItem;
+
             IEditAssignmentsView view = new EditAssignmentsWindow(true);
             using (var container = ObjectFactory.GetContainer())
             {

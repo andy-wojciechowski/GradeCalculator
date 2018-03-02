@@ -1,7 +1,6 @@
 ﻿using GradeCalculator.DependencyResolution;
 using GradeCalculator.Interfaces.Presenters;
 using GradeCalculator.Interfaces.Views;
-using GradeCalculator.Model;
 using System.Windows;
 using System.Windows.Controls;
 using WinForms = System.Windows.Forms;
@@ -54,9 +53,7 @@ namespace GradeCalculator.Windows
             }
             else
             {
-                if(this.classGrid.SelectedIndex == -1) { this.classGrid.SelectedIndex = 0; }
-                var schoolClass = (SchoolClass)this.classGrid.SelectedItem;
-                this.presenter.UpdateClass(schoolClass);
+                this.presenter.UpdateClass();
             }
         }
 
