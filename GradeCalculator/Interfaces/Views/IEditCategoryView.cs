@@ -7,5 +7,7 @@ namespace GradeCalculator.Interfaces.Views
     {
         void SetPresenter(IEditCategoryPresenter presenter);
         void InitializeDataBinding(Binding nameBinding, Binding worthBinding);
+        void ShowWindow();
+        void CloseWindow();
     }
 }

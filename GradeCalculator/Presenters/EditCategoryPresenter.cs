@@ -18,8 +18,7 @@ namespace GradeCalculator.Presenters
 
         public void CloseView()
         {
-            var window = this.view as Windows.EditCategoryWindow;
-            window.Close();
+            this.view.CloseWindow();
         }
 
         public void SetDataBindings()

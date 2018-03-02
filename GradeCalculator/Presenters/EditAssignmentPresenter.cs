@@ -69,8 +69,7 @@ namespace GradeCalculator.Presenters
 
         public void CloseView()
         {
-            var window = this.view as Windows.EditAssignmentsWindow;
-            window.Close();
+            this.view.CloseWindow();
         }
     }
 }

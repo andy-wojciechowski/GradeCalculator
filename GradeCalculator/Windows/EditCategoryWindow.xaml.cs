@@ -33,5 +33,15 @@ namespace GradeCalculator.Windows
             BindingOperations.SetBinding(nameTextBox, TextBox.TextProperty, nameBinding);
             BindingOperations.SetBinding(worthTextBox, TextBox.TextProperty, worthBinding);
         }
+
+        public void ShowWindow()
+        {
+            this.Show();
+        }
+
+        public void CloseWindow()
+        {
+            this.Close();
+        }
     }
 }

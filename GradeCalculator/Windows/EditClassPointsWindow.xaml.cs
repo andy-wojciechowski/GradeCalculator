@@ -64,5 +64,10 @@ namespace GradeCalculator.Windows
 
             this.assignmentsDataGrid.Columns[0].Width = new DataGridLength(0.01, DataGridLengthUnitType.Star);
         }
+
+        public void ShowWindow()
+        {
+            this.Show();
+        }
     }
 }

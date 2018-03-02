@@ -37,5 +37,15 @@ namespace GradeCalculator.Windows
         {
             this.presenter = presenter;
         }
+
+        public void ShowWindow()
+        {
+            this.Show();
+        }
+
+        public void CloseWindow()
+        {
+            this.Close();
+        }
     }
 }

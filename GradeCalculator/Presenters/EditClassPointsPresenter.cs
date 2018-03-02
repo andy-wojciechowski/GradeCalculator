@@ -27,8 +27,7 @@ namespace GradeCalculator.Presenters
                 presenter.SetAssignment(newAssignment);
                 presenter.SetDataBindings();
             }
-            var window = view as EditAssignmentsWindow;
-            if (window != null) { window.Show(); }
+            view.ShowWindow();
         }
 
         public void SetClass(SchoolClass model)
@@ -71,8 +70,7 @@ namespace GradeCalculator.Presenters
                 presenter.SetAssignment(assignment);
                 presenter.SetDataBindings();
             }
-            var window = view as EditAssignmentsWindow;
-            if (window != null) { window.Show(); }
+            view.ShowWindow();
         }
     }
 }

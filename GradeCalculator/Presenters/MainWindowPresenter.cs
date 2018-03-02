@@ -57,8 +57,7 @@ namespace GradeCalculator.Presenters
                     presenter.SetClass(classToUpdate);
                     presenter.SetDataBindings();
                 }
-                var window = view as EditClassPointsWindow;
-                if(window != null) { window.Show(); }
+                view.ShowWindow();
             }
         }
 
@@ -75,8 +74,7 @@ namespace GradeCalculator.Presenters
                 presenter.SetClass(newClass);
                 presenter.SetDataBindings();
             }
-            var window = view as EditClassCategoriesWindow;
-            if(window != null) { window.Show(); }
+            view.ShowWindow();
         }
 
         public void NewClassWithNoCategories()
@@ -92,8 +90,7 @@ namespace GradeCalculator.Presenters
                 presenter.SetClass(newClass);
                 presenter.SetDataBindings();
             }
-            var window = view as EditClassPointsWindow;
-            if(window != null) { window.Show(); }
+            view.ShowWindow();
         }
 
         public void SetView(IMainWindowView view)

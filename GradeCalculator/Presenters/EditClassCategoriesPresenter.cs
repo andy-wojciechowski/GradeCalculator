@@ -25,8 +25,7 @@ namespace GradeCalculator.Presenters
                 presenter.SetAssignment(assignment);
                 presenter.SetDataBindings();
             }
-            var window = view as EditAssignmentsWindow;
-            if(window != null) { window.Show(); }
+            view.ShowWindow();
         }
 
         public void AddAssignment()
@@ -43,8 +42,7 @@ namespace GradeCalculator.Presenters
                 presenter.SetAssignment(newAssignment);
                 presenter.SetDataBindings();
             }
-            var window = view as EditAssignmentsWindow;
-            if(window != null) { window.Show(); }
+            view.ShowWindow();
         }
 
         public void UpdateCategory(GradeCategory category)
@@ -58,8 +56,7 @@ namespace GradeCalculator.Presenters
                 presenter.SetCategory(category);
                 presenter.SetDataBindings();
             }
-            var window = view as EditCategoryWindow;
-            if(window != null) { window.Show(); }
+            view.ShowWindow();
         }
 
         public void AddCategory()
@@ -75,8 +72,7 @@ namespace GradeCalculator.Presenters
                 presenter.SetCategory(category);
                 presenter.SetDataBindings();
             }
-            var window = view as EditCategoryWindow;
-            if(window != null) { window.Show(); }
+            view.ShowWindow();
         }
 
         public void SetDataBindings()
