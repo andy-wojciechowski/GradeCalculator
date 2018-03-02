@@ -9,63 +9,63 @@ namespace GradeCalculator.Presenters
 {
     public class EditAssignmentPresenter : IEditAssignmentPresenter
     {
-        private IEditAssignmentsView view { get; set; }
-        private ObservableCollection<GradeCategory> categories { get; set; }
-        private Assignment data { get; set; }
+        private IEditAssignmentsView View { get; set; }
+        private ObservableCollection<GradeCategory> Categories { get; set; }
+        private Assignment Data { get; set; }
 
         public void SetView(IEditAssignmentsView view)
         {
-            this.view = view;
+            this.View = view;
         }
 
         public void SetAssignment(Assignment assignment)
         {
-            this.data = assignment;
+            this.Data = assignment;
         }
 
         public void SetGradeCategories(ObservableCollection<GradeCategory> categories)
         {
-            this.categories = categories;
+            this.Categories = categories;
         }
 
         public void SetDataBindings()
         {
             //First bind the readonly combobox
-            this.view.CategoryCombobox.ItemsSource = categories;
-            this.view.CategoryCombobox.DisplayMemberPath = "Name";
+            this.View.CategoryCombobox.ItemsSource = Categories;
+            this.View.CategoryCombobox.DisplayMemberPath = "Name";
 
             //Name Property
             Binding nameBinding = new Binding();
-            nameBinding.Source = this.data;
+            nameBinding.Source = this.Data;
             nameBinding.Path = new PropertyPath("Name");
             nameBinding.Mode = BindingMode.TwoWay;
             nameBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
 
             //Category Property
             Binding categoryBinding = new Binding();
-            categoryBinding.Source = this.data;
+            categoryBinding.Source = this.Data;
             categoryBinding.Path = new PropertyPath("Category");
             categoryBinding.Mode = BindingMode.TwoWay;
             categoryBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
 
             Binding totalPointsEarnedBinding = new Binding();
-            totalPointsEarnedBinding.Source = this.data;
+            totalPointsEarnedBinding.Source = this.Data;
             totalPointsEarnedBinding.Path = new PropertyPath("TotalPointsEarned");
             totalPointsEarnedBinding.Mode = BindingMode.TwoWay;
             totalPointsEarnedBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
 
             Binding totalPossiblePointsBinding = new Binding();
-            totalPossiblePointsBinding.Source = this.data;
+            totalPossiblePointsBinding.Source = this.Data;
             totalPossiblePointsBinding.Path = new PropertyPath("TotalPossiblePoints");
             totalPossiblePointsBinding.Mode = BindingMode.TwoWay;
             totalPossiblePointsBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
 
-            this.view.InitializeDataBinding(nameBinding, categoryBinding, totalPointsEarnedBinding, totalPossiblePointsBinding);
+            this.View.InitializeDataBinding(nameBinding, categoryBinding, totalPointsEarnedBinding, totalPossiblePointsBinding);
         }
 
         public void CloseView()
         {
-            this.view.CloseWindow();
+            this.View.CloseWindow();
         }
     }
 }

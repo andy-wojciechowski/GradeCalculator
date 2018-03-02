@@ -11,7 +11,7 @@ namespace GradeCalculator.Windows
     /// </summary>
     public partial class EditAssignmentsWindow : Window, IEditAssignmentsView
     {
-        private IEditAssignmentPresenter presenter { get; set; }
+        private IEditAssignmentPresenter Presenter { get; set; }
 
         public ComboBox CategoryCombobox => this.categoryCombobox;
 
@@ -23,7 +23,7 @@ namespace GradeCalculator.Windows
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            this.presenter.CloseView();
+            this.Presenter.CloseView();
         }
 
         public void InitializeDataBinding(Binding nameBinding, Binding categoryBinding, Binding totalPointsEarnedBinding, Binding totalPossiblePointsBinding)
@@ -37,7 +37,7 @@ namespace GradeCalculator.Windows
 
         public void SetPresenter(IEditAssignmentPresenter presenter)
         {
-            this.presenter = presenter;
+            this.Presenter = presenter;
         }
 
         public void ShowWindow()

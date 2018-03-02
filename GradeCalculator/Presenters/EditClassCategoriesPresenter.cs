@@ -10,13 +10,13 @@ namespace GradeCalculator.Presenters
 {
     public class EditClassCategoriesPresenter : IEditClassCategoriesPresenter
     {
-        private IEditClassCategoriesView view { get; set; }
-        private SchoolClass data { get; set; }
+        private IEditClassCategoriesView View { get; set; }
+        private SchoolClass Data { get; set; }
 
         public void UpdateAssignment()
         {
-            if (this.view.AssignmentsGrid.SelectedIndex == -1) { this.view.AssignmentsGrid.SelectedIndex = 0; }
-            Assignment assignment = (Assignment)this.view.AssignmentsGrid.SelectedItem;
+            if (this.View.AssignmentsGrid.SelectedIndex == -1) { this.View.AssignmentsGrid.SelectedIndex = 0; }
+            Assignment assignment = (Assignment)this.View.AssignmentsGrid.SelectedItem;
 
             IEditAssignmentsView view = new EditAssignmentsWindow(false);
             using (var container = ObjectFactory.GetContainer())
@@ -24,7 +24,7 @@ namespace GradeCalculator.Presenters
                 var presenter = container.GetInstance<IEditAssignmentPresenter>();
                 view.SetPresenter(presenter);
                 presenter.SetView(view);
-                presenter.SetGradeCategories(((SchoolClassCategories)data).Categories);
+                presenter.SetGradeCategories(((SchoolClassCategories)Data).Categories);
                 presenter.SetAssignment(assignment);
                 presenter.SetDataBindings();
             }
@@ -34,14 +34,14 @@ namespace GradeCalculator.Presenters
         public void AddAssignment()
         {
             Assignment newAssignment = new Assignment() { Name = string.Empty, Category = null, TotalPointsEarned = 0D, TotalPossiblePoints = 0D };
-            this.data.Assignments.Add(newAssignment);
+            this.Data.Assignments.Add(newAssignment);
             IEditAssignmentsView view = new EditAssignmentsWindow(false);
             using (var container = ObjectFactory.GetContainer())
             {
                 var presenter = container.GetInstance<IEditAssignmentPresenter>();
                 view.SetPresenter(presenter);
                 presenter.SetView(view);
-                presenter.SetGradeCategories(((SchoolClassCategories)data).Categories);
+                presenter.SetGradeCategories(((SchoolClassCategories)Data).Categories);
                 presenter.SetAssignment(newAssignment);
                 presenter.SetDataBindings();
             }
@@ -50,8 +50,8 @@ namespace GradeCalculator.Presenters
 
         public void UpdateCategory()
         {
-            if (this.view.CategoryGrid.SelectedIndex == -1) { this.view.CategoryGrid.SelectedIndex = 0; }
-            GradeCategory category = (GradeCategory)this.view.CategoryGrid.SelectedItem;
+            if (this.View.CategoryGrid.SelectedIndex == -1) { this.View.CategoryGrid.SelectedIndex = 0; }
+            GradeCategory category = (GradeCategory)this.View.CategoryGrid.SelectedItem;
 
             IEditCategoryView view = new EditCategoryWindow();
             using (var container = ObjectFactory.GetContainer())
@@ -68,7 +68,7 @@ namespace GradeCalculator.Presenters
         public void AddCategory()
         {
             GradeCategory category = new GradeCategory() { Name = string.Empty, CategoryWeight = 0D };
-            ((SchoolClassCategories)this.data).Categories.Add(category);
+            ((SchoolClassCategories)this.Data).Categories.Add(category);
             IEditCategoryView view = new EditCategoryWindow();
             using (var container = ObjectFactory.GetContainer())
             {
@@ -84,28 +84,28 @@ namespace GradeCalculator.Presenters
         public void SetDataBindings()
         {
             //Grade Categories
-            this.view.CategoryGrid.ItemsSource = ((SchoolClassCategories)this.data).Categories;
+            this.View.CategoryGrid.ItemsSource = ((SchoolClassCategories)this.Data).Categories;
 
             //Assignments
-            this.view.AssignmentsGrid.ItemsSource = this.data.Assignments;
+            this.View.AssignmentsGrid.ItemsSource = this.Data.Assignments;
 
             //Name Property
             Binding nameBinding = new Binding();
-            nameBinding.Source = data;
+            nameBinding.Source = Data;
             nameBinding.Path = new PropertyPath("Name");
             nameBinding.Mode = BindingMode.TwoWay;
             nameBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-            this.view.InitializeDataBinding(nameBinding);
+            this.View.InitializeDataBinding(nameBinding);
         }
 
         public void SetView(IEditClassCategoriesView view)
         {
-            this.view = view;
+            this.View = view;
         }
 
         public void SetClass(SchoolClass model)
         {
-            this.data = model;
+            this.Data = model;
         }
     }
 }

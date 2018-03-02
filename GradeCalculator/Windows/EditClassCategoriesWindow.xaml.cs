@@ -11,7 +11,7 @@ namespace GradeCalculator.Windows
     /// </summary>
     public partial class EditClassCategoriesWindow : Window, IEditClassCategoriesView
     {
-        private IEditClassCategoriesPresenter presenter { get; set; }
+        private IEditClassCategoriesPresenter Presenter { get; set; }
 
         public DataGrid CategoryGrid => this.categoryGrid;
 
@@ -29,7 +29,7 @@ namespace GradeCalculator.Windows
 
         public void SetPresenter(IEditClassCategoriesPresenter presenter)
         {
-            this.presenter = presenter;
+            this.Presenter = presenter;
         }
 
         private void editAssignmentButton_Click(object sender, RoutedEventArgs e)
@@ -40,14 +40,14 @@ namespace GradeCalculator.Windows
             }
             else
             {
-                this.presenter.UpdateAssignment();
+                this.Presenter.UpdateAssignment();
             }
         }
 
 
         private void addAssignmentButton_Click(object sender, RoutedEventArgs e)
         {
-            this.presenter.AddAssignment();
+            this.Presenter.AddAssignment();
         }
 
         private void editCategoryButton_Click(object sender, RoutedEventArgs e)
@@ -58,13 +58,13 @@ namespace GradeCalculator.Windows
             }
             else
             {
-                this.presenter.UpdateCategory();
+                this.Presenter.UpdateCategory();
             }
         }
 
         private void addCategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            this.presenter.AddCategory();
+            this.Presenter.AddCategory();
         }
 
         private void editClassForm_Loaded(object sender, RoutedEventArgs e)
