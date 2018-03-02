@@ -14,6 +14,8 @@ namespace GradeCalculator.Windows
     {
         private IEditClassPointsPresenter Presenter { get; set; }
 
+        public DataGrid AssignmentsDataGrid => this.assignmentsDataGrid;
+
         public EditClassPointsWindow()
         {
             InitializeComponent();

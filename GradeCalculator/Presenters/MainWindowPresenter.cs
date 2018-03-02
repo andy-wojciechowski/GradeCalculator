@@ -23,11 +23,7 @@ namespace GradeCalculator.Presenters
         public void ReadExistingData()
         {
             this.classes = new ObservableCollection<SchoolClass>(App.ReadFromXml());
-            var window = this.View as MainWindow;
-            if(window != null)
-            {
-                window.classGrid.ItemsSource = this.classes;
-            }
+            this.View.ClassesGrid.ItemsSource = this.classes;
         }
 
         public void UpdateClass(SchoolClass classToUpdate)

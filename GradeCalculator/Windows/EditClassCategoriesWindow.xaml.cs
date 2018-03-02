@@ -14,6 +14,10 @@ namespace GradeCalculator.Windows
     {
         private IEditClassCategoriesPresenter presenter { get; set; }
 
+        public DataGrid CategoryGrid => this.categoryGrid;
+
+        public DataGrid AssignmentsGrid => this.assignmentsDataGrid;
+
         public EditClassCategoriesWindow()
         {
             InitializeComponent();

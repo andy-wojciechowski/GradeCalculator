@@ -13,6 +13,8 @@ namespace GradeCalculator.Windows
     {
         private IEditAssignmentPresenter presenter { get; set; }
 
+        public ComboBox CategoryCombobox => this.categoryCombobox;
+
         public EditAssignmentsWindow(bool noCategories)
         {
             InitializeComponent();

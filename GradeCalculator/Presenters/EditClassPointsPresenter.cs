@@ -37,20 +37,16 @@ namespace GradeCalculator.Presenters
 
         public void SetDataBindings()
         {
-            var window = this.view as EditClassPointsWindow;
-            if (window != null)
-            {
-                //Assignments
-                window.assignmentsDataGrid.ItemsSource = this.data.Assignments;
+            //Assignments
+            this.view.AssignmentsDataGrid.ItemsSource = this.data.Assignments;
 
-                //Name Property
-                Binding nameBinding = new Binding();
-                nameBinding.Source = data;
-                nameBinding.Path = new PropertyPath("Name");
-                nameBinding.Mode = BindingMode.TwoWay;
-                nameBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-                this.view.InitializeDataBinding(nameBinding);
-            }
+            //Name Property
+            Binding nameBinding = new Binding();
+            nameBinding.Source = data;
+            nameBinding.Path = new PropertyPath("Name");
+            nameBinding.Mode = BindingMode.TwoWay;
+            nameBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            this.view.InitializeDataBinding(nameBinding);
         }
 
         public void SetView(IEditClassPointsView view)

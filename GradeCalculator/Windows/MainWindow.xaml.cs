@@ -15,6 +15,8 @@ namespace GradeCalculator.Windows
     {
         private IMainWindowPresenter presenter { get; set; }
 
+        public DataGrid ClassesGrid => this.classGrid;
+
         public MainWindow()
         {
             InitializeComponent();
