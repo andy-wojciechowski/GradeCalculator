@@ -43,8 +43,7 @@ namespace GradeCalculator.Presenters
                     presenter.SetClass(classToUpdate);
                     presenter.SetDataBindings();
                 }
-                var window = view as EditClassCategoriesWindow;
-                if (window != null) { window.Show(); }
+                view.ShowWindow();
             }
             else
             {
